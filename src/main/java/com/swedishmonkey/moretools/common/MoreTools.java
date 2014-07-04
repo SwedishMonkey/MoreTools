@@ -24,6 +24,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -49,12 +50,11 @@ public class MoreTools<FMLInitialization> {
 
     public static Logger logger;
 
-    @SidedProxy(clientSide = "com.swedishmonkey.moretools.common.ClientProxy", serverSide = "com.swedishmonkey.moretools.common.ClientProxy")
-    public static CommonProxy proxy;
-
-    @Instance("MoreTools")
+    @Instance(MoreTools.ID)
     public static MoreTools instance;
 
+    @SidedProxy(clientSide = "com.swedishmonkey.moretools.common.ClientProxy", serverSide = "com.swedishmonkey.moretools.common.ClientProxy")
+    public static CommonProxy proxy;
     public static ToolMaterial toolDirt = EnumHelper.addToolMaterial("dirt", 0,
             20, 2.0F, 0.0F, 5);
     public static ToolMaterial toolEmerald = EnumHelper.addToolMaterial(
@@ -77,7 +77,6 @@ public class MoreTools<FMLInitialization> {
             "bedrock", 12, 5000, 10.0F, 7.0F, 40);
     public static ToolMaterial toolQuartz = EnumHelper.addToolMaterial(
             "quartz", 2, 600, 5.0F, 4.0F, 20);
-
     public static ArmorMaterial armorDirt = EnumHelper.addArmorMaterial("dirt",
             20, new int[]{1, 2, 2, 1}, 5);
     public static ArmorMaterial armorGlass = EnumHelper.addArmorMaterial(
@@ -100,7 +99,6 @@ public class MoreTools<FMLInitialization> {
             "bedrock", 10000, new int[]{6, 8, 8, 6}, 40);
     public static ArmorMaterial armorQuartz = EnumHelper.addArmorMaterial(
             "quartz", 600, new int[]{4, 5, 5, 4}, 40);
-
     public static CreativeTabs tabTools = new TabTools(
             CreativeTabs.getNextID(), "Tools");
     public static CreativeTabs tabArmor = new TabArmor(
@@ -113,10 +111,8 @@ public class MoreTools<FMLInitialization> {
             Configs.ArmorPlaceHolderID)
             .setUnlocalizedName("TabArmorPlaceHolder").setTextureName(
                     "MoreTools:BedrockChestplate");
-
     public static LonsdaleiteOreWG LonsdaleiteWG = new LonsdaleiteOreWG();
     public static BedrockWG BedrockWG = new BedrockWG();
-
     public static Item DirtPickaxe = new DirtPickaxe(Configs.DirtPickaxeID,
             toolDirt).setUnlocalizedName("DirtPickaxe").setTextureName(
             "MoreTools:DirtPickaxe");
@@ -130,7 +126,6 @@ public class MoreTools<FMLInitialization> {
             .setUnlocalizedName("DirtAxe").setTextureName("MoreTools:DirtAxe");
     public static Item DirtHoe = new DirtHoe(Configs.DirtHoeID, toolDirt)
             .setUnlocalizedName("DirtHoe").setTextureName("MoreTools:DirtHoe");
-
     public static Item EmeraldPickaxe = new EmeraldPickaxe(
             Configs.EmeraldPickaxeID, toolEmerald).setUnlocalizedName(
             "EmeraldPickaxe").setTextureName("MoreTools:EmeraldPickaxe");
@@ -146,7 +141,6 @@ public class MoreTools<FMLInitialization> {
     public static Item EmeraldHoe = new EmeraldHoe(Configs.EmeraldHoeID,
             toolEmerald).setUnlocalizedName("EmeraldHoe").setTextureName(
             "MoreTools:EmeraldHoe");
-
     public static Item RedstonePickaxe = new RedstonePickaxe(
             Configs.RedstonePickaxeID, toolRedstone).setUnlocalizedName(
             "RedstonePickaxe").setTextureName("MoreTools:RedstonePickaxe");
@@ -162,7 +156,6 @@ public class MoreTools<FMLInitialization> {
     public static Item RedstoneHoe = new RedstoneHoe(Configs.RedstoneHoeID,
             toolRedstone).setUnlocalizedName("RedstoneHoe").setTextureName(
             "MoreTools:RedstoneHoe");
-
     public static Item GlassPickaxe = new GlassPickaxe(Configs.GlassPickaxeID,
             toolGlass).setUnlocalizedName("GlassPickaxe").setTextureName(
             "MoreTools:GlassPickaxe");
@@ -187,7 +180,6 @@ public class MoreTools<FMLInitialization> {
     public static Block RefinedGlass = new RefinedGlass(Configs.RefinedGlassID,
             Material.glass).setBlockName("RefinedGlass").setBlockTextureName(
             "MoreTools:RefinedGlass");
-
     public static Item LapisPickaxe = new LapisPickaxe(Configs.LapisPickaxeID,
             toolLapis).setUnlocalizedName("LapisPickaxe").setTextureName(
             "MoreTools:LapisPickaxe");
@@ -203,7 +195,6 @@ public class MoreTools<FMLInitialization> {
     public static Item LapisHoe = new LapisHoe(Configs.LapisHoeID, toolLapis)
             .setUnlocalizedName("LapisHoe")
             .setTextureName("MoreTools:LapisHoe");
-
     public static Item ObsidianPickaxe = new ObsidianPickaxe(
             Configs.ObsidianPickaxeID, toolObsidian).setUnlocalizedName(
             "ObsidianPickaxe").setTextureName("MoreTools:ObsidianPickaxe");
@@ -219,7 +210,6 @@ public class MoreTools<FMLInitialization> {
     public static Item ObsidianHoe = new ObsidianHoe(Configs.ObsidianHoeID,
             toolObsidian).setUnlocalizedName("ObsidianHoe").setTextureName(
             "MoreTools:ObsidianHoe");
-
     public static Item CoalPickaxe = new CoalPickaxe(Configs.CoalPickaxeID,
             toolCoal).setUnlocalizedName("CoalPickaxe").setTextureName(
             "MoreTools:CoalPickaxe");
@@ -233,7 +223,6 @@ public class MoreTools<FMLInitialization> {
             .setUnlocalizedName("CoalAxe").setTextureName("MoreTools:CoalAxe");
     public static Item CoalHoe = new CoalHoe(Configs.CoalHoeID, toolCoal)
             .setUnlocalizedName("CoalHoe").setTextureName("MoreTools:CoalHoe");
-
     public static Item WoolPickaxe = new WoolPickaxe(Configs.WoolPickaxeID,
             toolWool).setUnlocalizedName("WoolPickaxe").setTextureName(
             "MoreTools:WoolPickaxe");
@@ -250,7 +239,6 @@ public class MoreTools<FMLInitialization> {
     public static Block RockWool = new RockWool(Configs.RockWoolID,
             Material.ground).setBlockName("RockWool").setBlockTextureName(
             "MoreTools:RockWool");
-
     public static Item LonsdaleitePickaxe = new LonsdaleitePickaxe(
             Configs.LonsdaleitePickaxeID, toolLonsdaleite).setUnlocalizedName(
             "LonsdaleitePickaxe")
@@ -277,7 +265,6 @@ public class MoreTools<FMLInitialization> {
             Configs.LonsdaleiteBlockID, Material.dragonEgg).setBlockName(
             "LonsdaleiteBlock").setBlockTextureName(
             "MoreTools:LonsdaleiteBlock");
-
     public static Item BedrockPickaxe = new BedrockPickaxe(
             Configs.BedrockPickaxeID, toolBedrock).setUnlocalizedName(
             "BedrockPickaxe").setTextureName("MoreTools:BedrockPickaxe");
@@ -305,7 +292,6 @@ public class MoreTools<FMLInitialization> {
     public static Block ArtificialBedrock = new ArtificialBedrock(
             Configs.ArtificialBedrockID, Material.ground).setBlockName(
             "ArtificialBedrock").setBlockTextureName("MoreTools:FakeBedrock");
-
     public static Item QuartzPickaxe = new QuartzPickaxe(
             Configs.QuartzPickaxeID, toolQuartz).setUnlocalizedName(
             "QuartzPickaxe").setTextureName("MoreTools:QuartzPickaxe");
@@ -321,7 +307,6 @@ public class MoreTools<FMLInitialization> {
     public static Item QuartzHoe = new QuartzHoe(Configs.QuartzHoeID, toolQuartz)
             .setUnlocalizedName("QuartzHoe").setTextureName(
                     "MoreTools:QuartzHoe");
-
     public static Item DirtHelmet = new DirtArmor(armorDirt,
             Configs.DirtHelmetID, 0).setUnlocalizedName("DirtHelmet")
             .setTextureName("MoreTools:DirtHelmet");
@@ -334,7 +319,6 @@ public class MoreTools<FMLInitialization> {
     public static Item DirtBoots = new DirtArmor(armorDirt, Configs.DirtBootsID,
             3).setUnlocalizedName("DirtBoots").setTextureName(
             "MoreTools:DirtBoots");
-
     public static Item EmeraldHelmet = new EmeraldArmor(armorEmerald,
             Configs.EmeraldHelmetID, 0).setUnlocalizedName("EmeraldHelmet")
             .setTextureName("MoreTools:EmeraldHelmet");
@@ -347,7 +331,6 @@ public class MoreTools<FMLInitialization> {
     public static Item EmeraldBoots = new EmeraldArmor(armorEmerald,
             Configs.EmeraldBootsID, 3).setUnlocalizedName("EmeraldBoots")
             .setTextureName("MoreTools:EmeraldBoots");
-
     public static Item RedstoneHelmet = new RedstoneArmor(armorRedstone,
             Configs.RedstoneHelmetID, 0).setUnlocalizedName("RedstoneHelmet")
             .setTextureName("MoreTools:RedstoneHelmet");
@@ -362,7 +345,6 @@ public class MoreTools<FMLInitialization> {
     public static Item RedstoneBoots = new RedstoneArmor(armorRedstone,
             Configs.RedstoneBootsID, 3).setUnlocalizedName("RedstoneBoots")
             .setTextureName("MoreTools:RedstoneBoots");
-
     public static Item GlassHelmet = new GlassArmor(armorGlass,
             Configs.GlassHelmetID, 0).setUnlocalizedName("GlassHelmet")
             .setTextureName("MoreTools:GlassHelmet");
@@ -375,7 +357,6 @@ public class MoreTools<FMLInitialization> {
     public static Item GlassBoots = new GlassArmor(armorGlass,
             Configs.GlassBootsID, 3).setUnlocalizedName("GlassBoots")
             .setTextureName("MoreTools:GlassBoots");
-
     public static Item LapisHelmet = new LapisArmor(armorLapis,
             Configs.LapisHelmetID, 0).setUnlocalizedName("LapisHelmet")
             .setTextureName("MoreTools:LapisHelmet");
@@ -388,7 +369,6 @@ public class MoreTools<FMLInitialization> {
     public static Item LapisBoots = new LapisArmor(armorLapis,
             Configs.LapisBootsID, 3).setUnlocalizedName("LapisBoots")
             .setTextureName("MoreTools:LapisBoots");
-
     public static Item ObsidianHelmet = new ObsidianArmor(armorObsidian,
             Configs.ObsidianHelmetID, 0).setUnlocalizedName("ObsidianHelmet")
             .setTextureName("MoreTools:ObsidianHelmet");
@@ -403,7 +383,6 @@ public class MoreTools<FMLInitialization> {
     public static Item ObsidianBoots = new ObsidianArmor(armorObsidian,
             Configs.ObsidianBootsID, 3).setUnlocalizedName("ObsidianBoots")
             .setTextureName("MoreTools:ObsidianBoots");
-
     public static Item CoalHelmet = new CoalArmor(armorCoal,
             Configs.CoalHelmetID, 0).setUnlocalizedName("CoalHelmet")
             .setTextureName("MoreTools:CoalHelmet");
@@ -416,7 +395,6 @@ public class MoreTools<FMLInitialization> {
     public static Item CoalBoots = new CoalArmor(armorCoal, Configs.CoalBootsID,
             3).setUnlocalizedName("CoalBoots").setTextureName(
             "MoreTools:CoalBoots");
-
     public static Item WoolHelmet = new WoolArmor(armorWool,
             Configs.WoolHelmetID, 0).setUnlocalizedName("WoolHelmet")
             .setTextureName("MoreTools:WoolHelmet");
@@ -429,7 +407,6 @@ public class MoreTools<FMLInitialization> {
     public static Item WoolBoots = new WoolArmor(armorWool, Configs.WoolBootsID,
             3).setUnlocalizedName("WoolBoots").setTextureName(
             "MoreTools:WoolBoots");
-
     public static Item LonsdaleiteHelmet = new LonsdaleiteArmor(
             armorLonsdaleite, Configs.LonsdaleiteHelmetID, 0)
             .setUnlocalizedName("LonsdaleiteHelmet").setTextureName(
@@ -445,7 +422,6 @@ public class MoreTools<FMLInitialization> {
     public static Item LonsdaleiteBoots = new LonsdaleiteArmor(
             armorLonsdaleite, Configs.LonsdaleiteBootsID, 3).setUnlocalizedName(
             "LonsdaleiteBoots").setTextureName("MoreTools:LonsdaleiteBoots");
-
     public static Item BedrockHelmet = new BedrockArmor(armorBedrock,
             Configs.BedrockHelmetID, 0).setUnlocalizedName("BedrockHelmet")
             .setTextureName("MoreTools:BedrockHelmet");
@@ -458,7 +434,6 @@ public class MoreTools<FMLInitialization> {
     public static Item BedrockBoots = new BedrockArmor(armorBedrock,
             Configs.BedrockBootsID, 3).setUnlocalizedName("BedrockBoots")
             .setTextureName("MoreTools:BedrockBoots");
-
     public static Item QuartzHelmet = new QuartzArmor(armorQuartz,
             Configs.QuartzHelmetID, 0).setUnlocalizedName("QuartzHelmet")
             .setTextureName("MoreTools:QuartzHelmet");
@@ -472,7 +447,6 @@ public class MoreTools<FMLInitialization> {
     public static Item QuartzBoots = new QuartzArmor(armorQuartz,
             Configs.QuartzBootsID, 3).setUnlocalizedName("QuartzBoots")
             .setTextureName("MoreTools:QuartzBoots");
-
     public static Block DiamondFurnace = new DiamondFurnace(Configs.DiamondFurnaceID, Material.iron).setBlockName("DiamondFurnace").setBlockTextureName("MoreTools:DiamondFurnace");
 
     public MoreTools() {
@@ -1162,6 +1136,11 @@ public class MoreTools<FMLInitialization> {
         GameRegistry.addRecipe(new ShapedOreRecipe(RedstoneBoots, true,
                 new Object[]{"X X", "X X", Character.valueOf('X'),
                         "blockRedstone"}));
+    }
+
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        Configs.Init(event.getSuggestedConfigurationFile());
     }
 
     @Mod.EventHandler

@@ -1,9 +1,8 @@
 package com.swedishmonkey.moretools.common;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
+
+import java.io.File;
 
 public class Configs {
 
@@ -134,38 +133,37 @@ public class Configs {
     public static int ToolsPlaceHolderID;
     public static int DiamondFurnaceID;
 
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        Configuration config = new Configuration(
-                event.getSuggestedConfigurationFile());
+    public static void Init(File configFile) {
+        Configuration config = new Configuration(configFile);
 
         try {
             config.load();
 
-            boolean enableDirt = config.get("Enable/Disable", "enableDirt", true)
+            boolean enableDirt = config.get("Enable/Disable", "enableDirt", true, "Enable/Disable Dirt tools and armor")
                     .getBoolean(true);
-            boolean enableEmerald = config.get("Enable/Disable", "enableEmerald", true)
+            boolean enableEmerald = config.get("Enable/Disable", "enableEmerald", true, "Enable/Disable Emerald tools and armor")
                     .getBoolean(true);
-            boolean enableRedstone = config.get("Enable/Disable", "enableRedstone", true)
+            boolean enableRedstone = config.get("Enable/Disable", "enableRedstone", true, "Enable/Disable Redstone tools and armor")
                     .getBoolean(true);
-            boolean enableGlass = config.get("Enable/Disable", "enableGlass", true)
+            boolean enableGlass = config.get("Enable/Disable", "enableGlass", true, "Enable/Disable Glass tools and armor")
                     .getBoolean(true);
-            boolean enableLapis = config.get("Enable/Disable", "enableLapis", true)
+            boolean enableLapis = config.get("Enable/Disable", "enableLapis", true, "Enable/Disable Lapis tools and armor")
                     .getBoolean(true);
-            boolean enableObsidian = config.get("Enable/Disable", "enableObsidian", true)
+            boolean enableObsidian = config.get("Enable/Disable", "enableObsidian", true, "Enable/Disable Obsidian tools and armor")
                     .getBoolean(true);
-            boolean enableCoal = config.get("Enable/Disable", "enableCoal", true)
+            boolean enableCoal = config.get("Enable/Disable", "enableCoal", true, "Enable/Disable Coal tools and armor")
                     .getBoolean(true);
-            boolean enableWool = config.get("Enable/Disable", "enableWool", true)
+            boolean enableWool = config.get("Enable/Disable", "enableWool", true, "Enable/Disable Wool tools and armor")
                     .getBoolean(true);
             boolean enableLonsdaleite = config.get("Enable/Disable", "enableLonsdaleite",
-                    true).getBoolean(true);
-            boolean enableBedrock = config.get("Enable/Disable", "enableBedrock", true)
+                    true, "Enable/Disable Lonsdaleite tools and armor").getBoolean(true);
+            boolean enableBedrock = config.get("Enable/Disable", "enableBedrock", true, "Enable/Disable Bedrock tools and armor")
                     .getBoolean(true);
-            boolean enableQuartz = config.get("Enable/Disable", "enableQuartz", true)
+            boolean enableQuartz = config.get("Enable/Disable", "enableQuartz", true, "Enable/Disable Quartz tools and armor")
                     .getBoolean(true);
             boolean enableFakeBedrock = config.get("Enable/Disable", "enableFakeBedrock",
-                    false).getBoolean(false);
+                    false, "Enables/Disables Artificial bedrock").getBoolean(false);
+            boolean overrideBedrock = config.get("Enable/Disable", "overrideBedrock", false, "Overrides the vanilla bedrock").getBoolean(true);
 
             int DirtPickaxeID = config.get("Items", "DirtPickaxe",
                     "MoreTools:DirtPickaxe").getInt();
@@ -405,10 +403,6 @@ public class Configs {
 
             int DiamondFurnaceID = config.get("Blocks", "DiamondFurnace", "MoreTools:DiamondFurnace").getInt();
 
-            Property overrideBedrock = config.get("Enable/Disable",
-                    "overrideBedrock", true);
-            overrideBedrock.comment = "Makes the vanilla bedrock breakable";
-            boolean overrideBedrockBoolean = overrideBedrock.getBoolean(true);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
