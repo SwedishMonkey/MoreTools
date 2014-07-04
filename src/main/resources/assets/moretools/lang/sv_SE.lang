@@ -1,0 +1,143 @@
+item.RedstoneSword.name=Rödsten Svärd
+item.RedstonePickaxe.name=Rödsten Hacka
+item.RedstoneShovel.name=Rödsten Spade
+item.RedstoneAxe.name=Rödsten Yxa
+item.RedstoneHoe.name=Rödstenflohacka
+
+# Lapis
+item.LapisSword.name=Lapis Svärd
+item.LapisPickaxe.name=Lapis Hacka
+item.LapisShovel.name=Lapis Spade
+item.LapisAxe.name=Lapis Yxa
+item.LapisHoe.name=Lapis Flohacka
+item.LapisHelmet.name=Lapis Hjälm
+item.LapisChestplate.name=Lapis Harnesk
+item.LapisLeggings.name=Lapis Byxor
+item.LapisBoots.name=Lapis Stövlar
+
+#Dirt
+item.DirtSword.name=Jord Svärd
+item.DirtPickaxe.name=Jord Hacka
+item.DirtShovel.name=Jord Spade
+item.DirtAxe.name=Jord Yxa
+item.DirtHoe.name=Jord Flohacka
+item.DirtHelmet.name=Jord Hjälm
+item.DirtChestplate.name=Jord Harnesk
+item.DirtLeggings.name=Jord Byxor
+item.DirtBoots.name=Jord Stövlar
+
+# Glass
+item.GlassSword.name=Glas Svärd
+item.GlassPickaxe.name=Glas Hacka
+item.GlassShovel.name=Glas Spade
+item.GlassAxe.name=Glas Yxa
+item.GlassHoe.name=Glas Flohacka
+item.GlassHelmet.name=Glas Hjälm
+item.GlassChestplate.name=Glas Harnesk
+item.GlassLeggings.name=Glas Byxor
+item.GlassBoots.name=Glas Stövlar
+tile.CompressedGlass.name=Komprimerat Glas
+tile.RefinedGlass.name=Renat Glas
+tile.HardenedGlass.name=Härdat Glass
+
+# Emerald
+item.EmeraldSword.name=Smaragd Svärd
+item.EmeraldPickaxe.name=Smaragd Hacka
+item.EmeraldShovel.name=Smaragd Spade
+item.EmeraldAxe.name=Smaragd Yxa
+item.EmeraldHoe.name=Smaragd Flohacka
+item.EmeraldHelmet.name=Smaragd Hjälm
+item.EmeraldChestplate.name=Smaragd Harnesk
+item.EmeraldLeggings.name=Smaragd Byxor
+item.EmeraldBoots.name=Smaragd Stövlar
+
+# Obsidian
+item.ObsidianSword.name=Obsidian Svärd
+item.ObsidianPickaxe.name=Obsidian Hacka
+item.ObsidianShovel.name=Obsidian Spade
+item.ObsidianAxe.name=Obsidian Yxa
+item.ObsidianHoe.name=Obsidian Flochacka
+item.ObsidianHelmet.name=Obsidian Hjälm
+item.ObsidianChestplate.name=Obsidian Chestplate
+item.ObsidianLeggings.name=Obsidian Byxor
+item.ObsidianBoots.name=Obsidian Stövlar
+item.ObsidianLump.name=Obsidian Klump
+
+# Coal
+item.CoalSword.name=Kol Svärd
+item.CoalPickaxe.name=Kol Hacka
+item.CoalShovel.name=Kol Spade
+item.CoalAxe.name=Kol Yxa
+item.CoalHoe.name=Kol Flohacka
+item.CoalHelmet.name=Kol Hjälm
+item.CoalChestplate.name=Kol Harnesk
+item.CoalLeggings.name=Kol Leggings
+item.CoalBoots.name=Kol Stövlar
+
+# Wool
+item.WoolSword.name=Ull Svärd
+item.WoolPickaxe.name=Ull Hacka
+item.WoolShovel.name=Ull Spade
+item.WoolAxe.name=Ull Yxa
+item.WoolHoe.name=Ull Flohacka
+item.WoolHelmet.name=Ull Hjälm
+item.WoolChestplate.name=Ull Harnesk
+item.WoolLeggings.name=Ull Byxor
+item.WoolBoots.name=Ull Stövlar
+tile.blockRockWool.name=Sten Ull
+
+# Lonsdaleite
+item.LonsdaleiteSword.name=Lonsdaleite Svärd
+item.LonsdaleitePickaxe.name=Lonsdaleite Hacka
+item.LonsdaleiteShovel.name=Lonsdaleite Spade
+item.LonsdaleiteAxe.name=Lonsdaleite Yxa
+item.LonsdaleiteHoe.name=Lonsdaleite Flochacka
+item.LonsdaleiteHelmet.name=Lonsdaleite Hjälm
+item.LonsdaleiteChestplate.name=Lonsdaleite Harnesk
+item.LonsdaleiteLeggings.name=Lonsdaleite Byxor
+item.LonsdaleiteBoots.name=Lonsdaleite Stövlar
+item.Lonsdaleite.name=Lonsdaleite
+item.LonsdaleiteOre.name=Lonsdaleite Malm
+tile.blockLonsdaleite.name=Lonsdaleite Block
+tile.Small LonsdaleiteMetorite.name=Small Lonsdaleite Meteorit
+tile.LargeLonsdaleiteMetorite.name=Large Lonsdaleite Meteorit
+
+
+# Bedrock
+item.BedrockSword.name=Berggrunds Svärd
+item.BedrockPickaxe.name=Berggrunds Hacka
+item.BedrockShovel.name=Berggrunds Spade
+item.BedrockAxe.name=Berggrunds Yxa
+item.BedrockHoe.name=Berggrunds Flohacka
+item.BedrockHelmet.name=Berggrunds Hjälm
+item.BedrockChestplate.name=Berggrunds Harnesk
+item.BedrockLeggings.name=Berggrunds Byxor
+item.BedrcokBoots.name=Berggrunds Stövlar
+item.BedrockLump.name=Berggrunds Klump
+tile.blockBedrock.name=Konstgjord Berggrund
+
+# Quartz
+item.QuartzSword.name=Kvarts Svärd
+item.QuartzPickaxe.name=Kvarts Hacka
+item.QuartzShovel.name=Kvarts Spade
+item.QuartzAxe.name=Kvarts Yxa
+item.QuartzHoe.name=Kvarts Flohacka
+item.QuartzHelmet.name=Kvarts Hjälm
+item.QuartzChestplate.name=Kvarts Harnesk 
+item.QuartzLeggings.name=Kvarts Byxor
+item.QuartzBoots.name=Kavrts Stövlar
+
+# Achievements
+achievement.FastMiner=Snabb Gruvarbetare
+achievement.FastMiner.desc=Tillverka en Rödsten Pickaxe
+achievement.LuckyMiner=Turlig Gruvarbetare
+achievement.LuckyMiner.desc=Tillverka En Lapis Hacka
+achievement.PoorMiner=Fattig Gruvarbetare
+achievement.PoorMiner.desc=Tillverka En Jord Pickaxe
+achievement.BedrockMiner=Berggrunds Grävare
+achievement.BedrockMiner.desc=Hitta Och Förstör Ett Block Konstgjord Berggrund
+achievement.RichMiner=Rik Gruvarbetare
+achievement.RichMiner.desc=Tillverka en Lonsdaleite Hacka
+
+# Misc
+itemGroup.MoreTools=Mer Verktyg

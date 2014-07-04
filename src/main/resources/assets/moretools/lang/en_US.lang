@@ -1,0 +1,156 @@
+# Redstone
+item.RedstoneSword.name=Redstone Sword
+item.RedstonePickaxe.name=Redstone Pickaxe
+item.RedstoneShovel.name=Redstone Shovel
+item.RedstoneAxe.name=Redstone Axe
+item.RedstoneHoe.name=Redstone Hoe
+item.RedstoneHelmet.name=Redstone Helmet
+item.RedstoneChestplate.name=Redstone Chestplate
+item.RedstoneLeggings.name=Redstone Leggings
+item.RedstoneBoots.name=Redstone Boots
+
+# Lapis
+item.LapisSword.name=Lapis Sword
+item.LapisPickaxe.name=Lapis Pickaxe
+item.LapisShovel.name=Lapis Shovel
+item.LapisAxe.name=Lapis Axe
+item.LapisHoe.name=Lapis Hoe
+item.LapisHelmet.name=Lapis Helmet
+item.LapisChestplate.name=Lapis Chestplate
+item.LapisLeggings.name=Lapis Leggings
+item.LapisBoots.name=Lapis Boots
+
+#Dirt
+item.DirtSword.name=Dirt Sword
+item.DirtPickaxe.name=Dirt Pickaxe
+item.DirtShovel.name=Dirt Shovel
+item.DirtAxe.name=Dirt Axe
+item.DirtHoe.name=Dirt Hoe
+item.DirtHelmet.name=Dirt Helmet
+item.DirtChestplate.name=Dirt Chestplate
+item.DirtLeggings.name=Dirt Leggings
+item.DirtBoots.name=Dirt Boots
+
+# Glass
+item.GlassSword.name=Glass Sword
+item.GlassPickaxe.name=Glass Pickaxe
+item.GlassShovel.name=Glass Shovel
+item.GlassAxe.name=Glass Axe
+item.GlassHoe.name=Glass Hoe
+item.GlassHelmet.name=Glass Helmet
+item.GlassChestplate.name=Glass Chestplate
+item.GlassLeggings.name=Glass Leggings
+item.GlassBoots.name=Glass Boots
+tile.CompressedGlass.name=Compressed Glass
+tile.RefinedGlass.name=Refined Glass
+tile.HardenedGlass.name=Hardened Glass
+
+# Emerald
+item.EmeraldSword.name=Emerald Sword
+item.EmeraldPickaxe.name=Emerald Pickaxe
+item.EmeraldShovel.name=Emerald Shovel
+item.EmeraldAxe.name=Emerald Axe
+item.EmeraldHoe.name=Emerald Hoe
+item.EmeraldHelmet.name=Emerald Helmet
+item.EmeraldChestplate.name=Emerald Chestplate
+item.EmeraldLeggings.name=Emerald Leggings
+item.EmeraldBoots.name=Emerald Boots
+
+# Obsidian
+item.ObsidianSword.name=Obsidian Sword
+item.ObsidianPickaxe.name=Obsidian Pickaxe
+item.ObsidianShovel.name=Obsidian Shovel
+item.ObsidianAxe.name=Obsidian Axe
+item.ObsidianHoe.name=Obsidian Hoe
+item.ObsidianHelmet.name=Obsidian Helmet
+item.ObsidianChestplate.name=Obsidian Chestplate
+item.ObsidianLeggings.name=Obsidian Leggings
+item.ObsidianBoots.name=Obsidian Boots
+item.ObsidianLump.name=Obsidian Lump
+
+# Coal
+item.CoalSword.name=Coal Sword
+item.CoalPickaxe.name=Coal Pickaxe
+item.CoalShovel.name=Coal Shovel
+item.CoalAxe.name=Coal Axe
+item.CoalHoe.name=Coal Hoe
+item.CoalHelmet.name=Coal Helmet
+item.CoalChestplate.name=Coal Chestplate
+item.CoalLeggings.name=Coal Leggings
+item.CoalBoots.name=Coal Boots
+
+# Wool
+item.WoolSword.name=Wool Sword
+item.WoolPickaxe.name=Wool Pickaxe
+item.WoolShovel.name=Wool Shovel
+item.WoolAxe.name=Wool Axe
+item.WoolHoe.name=Wool Hoe
+item.WoolHelmet.name=Wool Helmet
+item.WoolChestplate.name=Wool Chestplate
+item.WoolLeggings.name=Wool Leggings
+item.WoolBoots.name=Wool Boots
+tile.RockWool.name=Rock Wool
+
+# Lonsdaleite
+item.LonsdaleiteSword.name=Lonsdaleite Sword
+item.LonsdaleitePickaxe.name=Lonsdaleite Pickaxe
+item.LonsdaleiteShovel.name=Lonsdaleite Shovel
+item.LonsdaleiteAxe.name=Lonsdaleite Axe
+item.LonsdaleiteHoe.name=Lonsdaleite Hoe
+item.LonsdaleiteHelmet.name=Lonsdaleite Helmet
+item.LonsdaleiteChestplate.name=Lonsdaleite Chestplate
+item.LonsdaleiteLeggings.name=Lonsdaleite Leggings
+item.LonsdaleiteBoots.name=Lonsdaleite Boots
+item.LonsdaleiteGem.name=Lonsdaleite
+tile.LonsdaleiteOre.name=Lonsdaleite Ore
+tile.LonsdaleiteBlock.name=Lonsdaleite Block
+tile.Small LonsdaleiteMetorite.name=Small Lonsdaleite Meteorite
+tile.LargeLonsdaleiteMetorite.name=Large Lonsdaleite Meteorite
+tile.DiamondFurnace.name=Diamond Furnace
+
+
+# Bedrock
+item.BedrockSword.name=Bedrock Sword
+item.BedrockPickaxe.name=Bedrock Pickaxe
+item.BedrockShovel.name=Bedrock Shovel
+item.BedrockAxe.name=Bedrock Axe
+item.BedrockHoe.name=Bedrock Hoe
+item.BedrockHelmet.name=Bedrock Helmet
+item.BedrockChestplate.name=Bedrock Chestplate
+item.BedrockLeggings.name=Bedrock Leggings
+item.BedrockBoots.name=Bedrock Boots
+item.BedrockLump.name=Bedrock Lump
+item.ObsidianLump.name=Obsidian Lump
+item.DiamondStick.name=Lonsdaleite Stick
+tile.ArtificialBedrock.name=Artificial Bedrock
+
+# Quartz
+item.QuartzSword.name=Quartz Sword
+item.QuartzPickaxe.name=Quartz Pickaxe
+item.QuartzShovel.name=Quartz Shovel
+item.QuartzAxe.name=Quartz Axe
+item.QuartzHoe.name=Quartz Hoe
+item.QuartzHelmet.name=Quartz Helmet
+item.QuartzChestplate.name=Quartz Chestplate
+item.QuartzLeggings.name=Quartz Leggings
+item.QuartzBoots.name=Quartz Boots
+
+# Achievements
+achievement.FastMiner.name=Fast Miner
+achievement.FastMiner.desc=Craft A Redstone Pickaxe
+achievement.LuckyMiner.name=Lucky Miner
+achievement.LuckyMiner.desc=Craft A Lapis Pickaxe
+achievement.PoorMiner.name=Poor Miner
+achievement.PoorMiner.desc=Craft A Dirt Pickaxe
+achievement.BedrockMiner=Bedrock Miner
+achievement.BedrockMiner.desc=Find And Mine A Block Of Artificial Bedrock
+achievement.RichMiner=Rich Miner
+achievement.RichMiner.desc=Craft A Lonsdaleite Pickaxe
+
+
+# Misc
+itemGroup.Tools=More Tools Tools/Blocks
+itemGroup.Armor=More Tools Armor
+
+#GUI
+gui.diamondfurnace=Diamond Furnace
