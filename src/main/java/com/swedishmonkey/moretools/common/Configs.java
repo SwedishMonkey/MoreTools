@@ -138,277 +138,281 @@ public class Configs {
     public void preInit(FMLPreInitializationEvent event) {
         Configuration config = new Configuration(
                 event.getSuggestedConfigurationFile());
-        config.load();
 
-        boolean enableDirt = config.get("Enable/Disable", "enableDirt", true)
-                .getBoolean(true);
-        boolean enableEmerald = config.get("Enable/Disable", "enableEmerald", true)
-                .getBoolean(true);
-        boolean enableRedstone = config.get("Enable/Disable", "enableRedstone", true)
-                .getBoolean(true);
-        boolean enableGlass = config.get("Enable/Disable", "enableGlass", true)
-                .getBoolean(true);
-        boolean enableLapis = config.get("Enable/Disable", "enableLapis", true)
-                .getBoolean(true);
-        boolean enableObsidian = config.get("Enable/Disable", "enableObsidian", true)
-                .getBoolean(true);
-        boolean enableCoal = config.get("Enable/Disable", "enableCoal", true)
-                .getBoolean(true);
-        boolean enableWool = config.get("Enable/Disable", "enableWool", true)
-                .getBoolean(true);
-        boolean enableLonsdaleite = config.get("Enable/Disable", "enableLonsdaleite",
-                true).getBoolean(true);
-        boolean enableBedrock = config.get("Enable/Disable", "enableBedrock", true)
-                .getBoolean(true);
-        boolean enableQuartz = config.get("Enable/Disable", "enableQuartz", true)
-                .getBoolean(true);
-        boolean enableFakeBedrock = config.get("Enable/Disable", "enableFakeBedrock",
-                false).getBoolean(false);
+        try {
+            config.load();
 
-        int DirtPickaxeID = config.get("Items", "DirtPickaxe",
-                "MoreTools:DirtPickaxe").getInt();
-        int DirtSwordID = config.get("Items", "DirtPickaxe", "MoreTools:DirtSword")
-                .getInt();
-        int DirtShovelID = config
-                .get("Items", "DirtShovel", "MoreTools:DirtShovel").getInt();
-        int DirtAxeID = config.get("Items", "DirtAxe", "MoreTools:DirtAxe")
-                .getInt();
-        int DirtHoeID = config.get("Items", "DirtHoe", "MoreTools:DirtHoe")
-                .getInt();
-        int DirtHelmetID = config
-                .get("Armor", "DirtHelmet", "MoreTools:DirtHelmet").getInt();
-        int DirtChestplateID = config.get("Armor", "DirtChestplate",
-                "MoreTools:DirtChestplate").getInt();
-        int DirtLeggingsID = config.get("Armor", "DirtLeggings",
-                "MoreTools:DirtLeggings").getInt();
-        int DirtBootsID = config.get("Armor", "DirtBoots", "MoreTools:DirtBoots")
-                .getInt();
+            boolean enableDirt = config.get("Enable/Disable", "enableDirt", true)
+                    .getBoolean(true);
+            boolean enableEmerald = config.get("Enable/Disable", "enableEmerald", true)
+                    .getBoolean(true);
+            boolean enableRedstone = config.get("Enable/Disable", "enableRedstone", true)
+                    .getBoolean(true);
+            boolean enableGlass = config.get("Enable/Disable", "enableGlass", true)
+                    .getBoolean(true);
+            boolean enableLapis = config.get("Enable/Disable", "enableLapis", true)
+                    .getBoolean(true);
+            boolean enableObsidian = config.get("Enable/Disable", "enableObsidian", true)
+                    .getBoolean(true);
+            boolean enableCoal = config.get("Enable/Disable", "enableCoal", true)
+                    .getBoolean(true);
+            boolean enableWool = config.get("Enable/Disable", "enableWool", true)
+                    .getBoolean(true);
+            boolean enableLonsdaleite = config.get("Enable/Disable", "enableLonsdaleite",
+                    true).getBoolean(true);
+            boolean enableBedrock = config.get("Enable/Disable", "enableBedrock", true)
+                    .getBoolean(true);
+            boolean enableQuartz = config.get("Enable/Disable", "enableQuartz", true)
+                    .getBoolean(true);
+            boolean enableFakeBedrock = config.get("Enable/Disable", "enableFakeBedrock",
+                    false).getBoolean(false);
 
-        int EmeraldPickaxeID = config.get("Items", "EmeraldPickaxe",
-                "MoreTools:EmeraldPickaxe").getInt();
-        int EmeraldSwordID = config.get("Items", "EmeraldPickaxe",
-                "MoreTools:EmeraldSword").getInt();
-        int EmeraldShovelID = config.get("Items", "EmeraldShovel",
-                "MoreTools:EmeraldShovel").getInt();
-        int EmeraldAxeID = config
-                .get("Items", "EmeraldAxe", "MoreTools:EmeraldAxe").getInt();
-        int EmeraldHoeID = config
-                .get("Items", "EmeraldHoe", "MoreTools:EmeraldHoe").getInt();
-        int EmeraldHelmetID = config.get("Armor", "EmeraldHelmet",
-                "MoreTools:EmeraldHelmet").getInt();
-        int EmeraldChestplateID = config.get("Armor", "EmeraldChestplate",
-                "MoreTools:EmeraldChestplate").getInt();
-        int EmeraldLeggingsID = config.get("Armor", "EmeraldLeggings",
-                "MoreTools:EmeraldLeggings").getInt();
-        int EmeraldBootsID = config.get("Armor", "EmeraldBoots",
-                "MoreTools:EmeraldBoots").getInt();
+            int DirtPickaxeID = config.get("Items", "DirtPickaxe",
+                    "MoreTools:DirtPickaxe").getInt();
+            int DirtSwordID = config.get("Items", "DirtPickaxe", "MoreTools:DirtSword")
+                    .getInt();
+            int DirtShovelID = config
+                    .get("Items", "DirtShovel", "MoreTools:DirtShovel").getInt();
+            int DirtAxeID = config.get("Items", "DirtAxe", "MoreTools:DirtAxe")
+                    .getInt();
+            int DirtHoeID = config.get("Items", "DirtHoe", "MoreTools:DirtHoe")
+                    .getInt();
+            int DirtHelmetID = config
+                    .get("Armor", "DirtHelmet", "MoreTools:DirtHelmet").getInt();
+            int DirtChestplateID = config.get("Armor", "DirtChestplate",
+                    "MoreTools:DirtChestplate").getInt();
+            int DirtLeggingsID = config.get("Armor", "DirtLeggings",
+                    "MoreTools:DirtLeggings").getInt();
+            int DirtBootsID = config.get("Armor", "DirtBoots", "MoreTools:DirtBoots")
+                    .getInt();
 
-        int RedstonePickaxeID = config.get("Items", "RedstonePickaxe",
-                "MoreTools:RedstonePickaxe").getInt();
-        int RedstoneSwordID = config.get("Items", "RedstonePickaxe",
-                "MoreTools:RedstoneSword").getInt();
-        int RedstoneShovelID = config.get("Items", "RedstoneShovel",
-                "MoreTools:RedstoneShovel").getInt();
-        int RedstoneAxeID = config.get("Items", "RedstoneAxe",
-                "MoreTools:RedstoneAxe").getInt();
-        int RedstoneHoeID = config.get("Items", "RedstoneHoe",
-                "MoreTools:RedstoneHoe").getInt();
-        int RedstoneHelmetID = config.get("Armor", "RedstoneHelmet",
-                "MoreTools:RedstoneHelmet").getInt();
-        int RedstoneChestplateID = config.get("Armor", "RedstoneChestplate",
-                "MoreTools:RedstoneChestplate").getInt();
-        int RedstoneLeggingsID = config.get("Armor", "RedstoneLeggings",
-                "MoreTools:RedstoneLeggings").getInt();
-        int RedstoneBootsID = config.get("Armor", "RedstoneBoots",
-                "MoreTools:RedstoneBoots").getInt();
+            int EmeraldPickaxeID = config.get("Items", "EmeraldPickaxe",
+                    "MoreTools:EmeraldPickaxe").getInt();
+            int EmeraldSwordID = config.get("Items", "EmeraldPickaxe",
+                    "MoreTools:EmeraldSword").getInt();
+            int EmeraldShovelID = config.get("Items", "EmeraldShovel",
+                    "MoreTools:EmeraldShovel").getInt();
+            int EmeraldAxeID = config
+                    .get("Items", "EmeraldAxe", "MoreTools:EmeraldAxe").getInt();
+            int EmeraldHoeID = config
+                    .get("Items", "EmeraldHoe", "MoreTools:EmeraldHoe").getInt();
+            int EmeraldHelmetID = config.get("Armor", "EmeraldHelmet",
+                    "MoreTools:EmeraldHelmet").getInt();
+            int EmeraldChestplateID = config.get("Armor", "EmeraldChestplate",
+                    "MoreTools:EmeraldChestplate").getInt();
+            int EmeraldLeggingsID = config.get("Armor", "EmeraldLeggings",
+                    "MoreTools:EmeraldLeggings").getInt();
+            int EmeraldBootsID = config.get("Armor", "EmeraldBoots",
+                    "MoreTools:EmeraldBoots").getInt();
 
-        int GlassPickaxeID = config.get("Items", "GlassPickaxe",
-                "MoreTools:GlassPickaxe").getInt();
-        int GlassSwordID = config.get("Items", "GlassPickaxe",
-                "MoreTools:GlassSword").getInt();
-        int GlassShovelID = config.get("Items", "GlassShovel",
-                "MoreTools:GlassShovel").getInt();
-        int GlassAxeID = config.get("Items", "GlassAxe", "MoreTools:GlassAxe")
-                .getInt();
-        int GlassHoeID = config.get("Items", "GlassHoe", "MoreTools:GlassHoe")
-                .getInt();
-        int GlassHelmetID = config.get("Armor", "GlassHelmet",
-                "MoreTools:GlassHelmet").getInt();
-        int GlassChestplateID = config.get("Armor", "GlassChestplate",
-                "MoreTools:GlassChestplate").getInt();
-        int GlassLeggingsID = config.get("Armor", "GlassLeggings",
-                "MoreTools:GlassLeggings").getInt();
-        int GlassBootsID = config
-                .get("Armor", "GlassBoots", "MoreTools:GlassBoots").getInt();
-        int RefinedGlassID = config.get("Blocks", "RefinedGlass",
-                "MoreTools:RefinedGlass").getInt();
-        int CompressedGlassID = config.get("Blocks", "CompressedGlass",
-                "MoreTools:CompressedGlass").getInt();
-        int HardenedGlassID = config.get("Blocks", "HardenedGlass",
-                "MoreTools:HardenedGlass").getInt();
+            int RedstonePickaxeID = config.get("Items", "RedstonePickaxe",
+                    "MoreTools:RedstonePickaxe").getInt();
+            int RedstoneSwordID = config.get("Items", "RedstonePickaxe",
+                    "MoreTools:RedstoneSword").getInt();
+            int RedstoneShovelID = config.get("Items", "RedstoneShovel",
+                    "MoreTools:RedstoneShovel").getInt();
+            int RedstoneAxeID = config.get("Items", "RedstoneAxe",
+                    "MoreTools:RedstoneAxe").getInt();
+            int RedstoneHoeID = config.get("Items", "RedstoneHoe",
+                    "MoreTools:RedstoneHoe").getInt();
+            int RedstoneHelmetID = config.get("Armor", "RedstoneHelmet",
+                    "MoreTools:RedstoneHelmet").getInt();
+            int RedstoneChestplateID = config.get("Armor", "RedstoneChestplate",
+                    "MoreTools:RedstoneChestplate").getInt();
+            int RedstoneLeggingsID = config.get("Armor", "RedstoneLeggings",
+                    "MoreTools:RedstoneLeggings").getInt();
+            int RedstoneBootsID = config.get("Armor", "RedstoneBoots",
+                    "MoreTools:RedstoneBoots").getInt();
 
-        int LapisPickaxeID = config.get("Items", "LapisPickaxe",
-                "MoreTools:LapisPickaxe").getInt();
-        int LapisSwordID = config.get("Items", "LapisPickaxe",
-                "MoreTools:LapisSword").getInt();
-        int LapisShovelID = config.get("Items", "LapisShovel",
-                "MoreTools:LapisShovel").getInt();
-        int LapisAxeID = config.get("Items", "LapisAxe", "MoreTools:LapisAxe")
-                .getInt();
-        int LapisHoeID = config.get("Items", "LapisHoe", "MoreTools:LapisHoe")
-                .getInt();
-        int LapisHelmetID = config.get("Armor", "LapisHelmet",
-                "MoreTools:LapisHelmet").getInt();
-        int LapisChestplateID = config.get("Armor", "LapisChestplate",
-                "MoreTools:LapisChestplate").getInt();
-        int LapisLeggingsID = config.get("Armor", "LapisLeggings",
-                "MoreTools:LapisLeggings").getInt();
-        int LapisBootsID = config
-                .get("Armor", "LapisBoots", "MoreTools:LapisBoots").getInt();
+            int GlassPickaxeID = config.get("Items", "GlassPickaxe",
+                    "MoreTools:GlassPickaxe").getInt();
+            int GlassSwordID = config.get("Items", "GlassPickaxe",
+                    "MoreTools:GlassSword").getInt();
+            int GlassShovelID = config.get("Items", "GlassShovel",
+                    "MoreTools:GlassShovel").getInt();
+            int GlassAxeID = config.get("Items", "GlassAxe", "MoreTools:GlassAxe")
+                    .getInt();
+            int GlassHoeID = config.get("Items", "GlassHoe", "MoreTools:GlassHoe")
+                    .getInt();
+            int GlassHelmetID = config.get("Armor", "GlassHelmet",
+                    "MoreTools:GlassHelmet").getInt();
+            int GlassChestplateID = config.get("Armor", "GlassChestplate",
+                    "MoreTools:GlassChestplate").getInt();
+            int GlassLeggingsID = config.get("Armor", "GlassLeggings",
+                    "MoreTools:GlassLeggings").getInt();
+            int GlassBootsID = config
+                    .get("Armor", "GlassBoots", "MoreTools:GlassBoots").getInt();
+            int RefinedGlassID = config.get("Blocks", "RefinedGlass",
+                    "MoreTools:RefinedGlass").getInt();
+            int CompressedGlassID = config.get("Blocks", "CompressedGlass",
+                    "MoreTools:CompressedGlass").getInt();
+            int HardenedGlassID = config.get("Blocks", "HardenedGlass",
+                    "MoreTools:HardenedGlass").getInt();
 
-        int ObsidianPickaxeID = config.get("Items", "ObsidianPickaxe",
-                "MoreTools:ObsidianPickaxe").getInt();
-        int ObsidianSwordID = config.get("Items", "ObsidianPickaxe",
-                "MoreTools:ObsidianSword").getInt();
-        int ObsidianShovelID = config.get("Items", "ObsidianShovel",
-                "MoreTools:ObsidianShovel").getInt();
-        int ObsidianAxeID = config.get("Items", "ObsidianAxe",
-                "MoreTools:ObsidianAxe").getInt();
-        int ObsidianHoeID = config.get("Items", "ObsidianHoe",
-                "MoreTools:ObsidianHoe").getInt();
-        int ObsidianHelmetID = config.get("Armor", "ObsidianHelmet",
-                "MoreTools:ObsidianHelmet").getInt();
-        int ObsidianChestplateID = config.get("Armor", "ObsidianChestplate",
-                "MoreTools:ObsidianChestplate").getInt();
-        int ObsidianLeggingsID = config.get("Armor", "ObsidianLeggings",
-                "MoreTools:ObsidianLeggings").getInt();
-        int ObsidianBootsID = config.get("Armor", "ObsidianBoots",
-                "MoreTools:ObsidianBoots").getInt();
+            int LapisPickaxeID = config.get("Items", "LapisPickaxe",
+                    "MoreTools:LapisPickaxe").getInt();
+            int LapisSwordID = config.get("Items", "LapisPickaxe",
+                    "MoreTools:LapisSword").getInt();
+            int LapisShovelID = config.get("Items", "LapisShovel",
+                    "MoreTools:LapisShovel").getInt();
+            int LapisAxeID = config.get("Items", "LapisAxe", "MoreTools:LapisAxe")
+                    .getInt();
+            int LapisHoeID = config.get("Items", "LapisHoe", "MoreTools:LapisHoe")
+                    .getInt();
+            int LapisHelmetID = config.get("Armor", "LapisHelmet",
+                    "MoreTools:LapisHelmet").getInt();
+            int LapisChestplateID = config.get("Armor", "LapisChestplate",
+                    "MoreTools:LapisChestplate").getInt();
+            int LapisLeggingsID = config.get("Armor", "LapisLeggings",
+                    "MoreTools:LapisLeggings").getInt();
+            int LapisBootsID = config
+                    .get("Armor", "LapisBoots", "MoreTools:LapisBoots").getInt();
 
-        int CoalPickaxeID = config.get("Items", "CoalPickaxe",
-                "MoreTools:CoalPickaxe").getInt();
-        int CoalSwordID = config.get("Items", "CoalPickaxe", "MoreTools:CoalSword")
-                .getInt();
-        int CoalShovelID = config
-                .get("Items", "CoalShovel", "MoreTools:CoalShovel").getInt();
-        int CoalAxeID = config.get("Items", "CoalAxe", "MoreTools:CoalAxe")
-                .getInt();
-        int CoalHoeID = config.get("Items", "CoalHoe", "MoreTools:CoalHoe")
-                .getInt();
-        int CoalHelmetID = config
-                .get("Armor", "CoalHelmet", "MoreTools:CoalHelmet").getInt();
-        int CoalChestplateID = config.get("Armor", "CoalChestplate",
-                "MoreTools:CoalChestplate").getInt();
-        int CoalLeggingsID = config.get("Armor", "CoalLeggings",
-                "MoreTools:CoalLeggings").getInt();
-        int CoalBootsID = config.get("Armor", "CoalBoots", "MoreTools:CoalBoots")
-                .getInt();
+            int ObsidianPickaxeID = config.get("Items", "ObsidianPickaxe",
+                    "MoreTools:ObsidianPickaxe").getInt();
+            int ObsidianSwordID = config.get("Items", "ObsidianPickaxe",
+                    "MoreTools:ObsidianSword").getInt();
+            int ObsidianShovelID = config.get("Items", "ObsidianShovel",
+                    "MoreTools:ObsidianShovel").getInt();
+            int ObsidianAxeID = config.get("Items", "ObsidianAxe",
+                    "MoreTools:ObsidianAxe").getInt();
+            int ObsidianHoeID = config.get("Items", "ObsidianHoe",
+                    "MoreTools:ObsidianHoe").getInt();
+            int ObsidianHelmetID = config.get("Armor", "ObsidianHelmet",
+                    "MoreTools:ObsidianHelmet").getInt();
+            int ObsidianChestplateID = config.get("Armor", "ObsidianChestplate",
+                    "MoreTools:ObsidianChestplate").getInt();
+            int ObsidianLeggingsID = config.get("Armor", "ObsidianLeggings",
+                    "MoreTools:ObsidianLeggings").getInt();
+            int ObsidianBootsID = config.get("Armor", "ObsidianBoots",
+                    "MoreTools:ObsidianBoots").getInt();
 
-        int WoolPickaxeID = config.get("Items", "WoolPickaxe",
-                "MoreTools:WoolPickaxe").getInt();
-        int WoolSwordID = config.get("Items", "WoolPickaxe", "MoreTools:WoolSword")
-                .getInt();
-        int WoolShovelID = config
-                .get("Items", "WoolShovel", "MoreTools:WoolShovel").getInt();
-        int WoolAxeID = config.get("Items", "WoolAxe", "MoreTools:WoolAxe")
-                .getInt();
-        int WoolHoeID = config.get("Items", "WoolHoe", "MoreTools:WoolHoe")
-                .getInt();
-        int WoolHelmetID = config
-                .get("Armor", "WoolHelmet", "MoreTools:WoolHelmet").getInt();
-        int WoolChestplateID = config.get("Armor", "WoolChestplate",
-                "MoreTools:WoolChestplate").getInt();
-        int WoolLeggingsID = config.get("Armor", "WoolLeggings",
-                "MoreTools:WoolLeggings").getInt();
-        int WoolBootsID = config.get("Armor", "WoolBoots", "MoreTools:WoolBoots")
-                .getInt();
-        int RockWoolID = config.get("Blocks", "RockWool", "MoreTools:RockWool")
-                .getInt();
+            int CoalPickaxeID = config.get("Items", "CoalPickaxe",
+                    "MoreTools:CoalPickaxe").getInt();
+            int CoalSwordID = config.get("Items", "CoalPickaxe", "MoreTools:CoalSword")
+                    .getInt();
+            int CoalShovelID = config
+                    .get("Items", "CoalShovel", "MoreTools:CoalShovel").getInt();
+            int CoalAxeID = config.get("Items", "CoalAxe", "MoreTools:CoalAxe")
+                    .getInt();
+            int CoalHoeID = config.get("Items", "CoalHoe", "MoreTools:CoalHoe")
+                    .getInt();
+            int CoalHelmetID = config
+                    .get("Armor", "CoalHelmet", "MoreTools:CoalHelmet").getInt();
+            int CoalChestplateID = config.get("Armor", "CoalChestplate",
+                    "MoreTools:CoalChestplate").getInt();
+            int CoalLeggingsID = config.get("Armor", "CoalLeggings",
+                    "MoreTools:CoalLeggings").getInt();
+            int CoalBootsID = config.get("Armor", "CoalBoots", "MoreTools:CoalBoots")
+                    .getInt();
 
-        int LonsdaleitePickaxeID = config.get("Items", "LonsdaleitePickaxe",
-                "MoreTools:LonsdaleitePickaxe").getInt();
-        int LonsdaleiteSwordID = config.get("Items", "LonsdaleitePickaxe",
-                "MoreTools:LonsdaleiteSword").getInt();
-        int LonsdaleiteShovelID = config.get("Items", "LonsdaleiteShovel",
-                "MoreTools:LonsdaleiteShovel").getInt();
-        int LonsdaleiteAxeID = config.get("Items", "LonsdaleiteAxe",
-                "MoreTools:LonsdaleiteAxe").getInt();
-        int LonsdaleiteHoeID = config.get("Items", "LonsdaleiteHoe",
-                "MoreTools:LonsdaleiteHoe").getInt();
-        int LonsdaleiteHelmetID = config.get("Armor", "LonsdaleiteHelmet",
-                "MoreTools:LonsdaleiteHelmet").getInt();
-        int LonsdaleiteChestplateID = config.get("Armor", "LonsdaleiteChestplate",
-                "MoreTools:LonsdaleiteChestplate").getInt();
-        int LonsdaleiteLeggingsID = config.get("Armor", "LonsdaleiteLeggings",
-                "MoreTools:LonsdaleiteLeggings").getInt();
-        int LonsdaleiteBootsID = config.get("Armor", "LonsdaleiteBoots",
-                "MoreTools:LonsdaleiteBoots").getInt();
-        int LonsdaleiteGemID = config.get("Items", "LonsdaleiteGem",
-                "MoreTools:LonsdaleiteGem").getInt();
-        int LonsdaleiteOreID = config.get("Blocks", "LonsdaleiteOre",
-                "MoreTools:LonsdaleiteOre").getInt();
-        int LonsdaleiteBlockID = config.get("Blocks", "LonsdaleiteBlock",
-                "MoreTools:LonsdaleiteBlock").getInt();
+            int WoolPickaxeID = config.get("Items", "WoolPickaxe",
+                    "MoreTools:WoolPickaxe").getInt();
+            int WoolSwordID = config.get("Items", "WoolPickaxe", "MoreTools:WoolSword")
+                    .getInt();
+            int WoolShovelID = config
+                    .get("Items", "WoolShovel", "MoreTools:WoolShovel").getInt();
+            int WoolAxeID = config.get("Items", "WoolAxe", "MoreTools:WoolAxe")
+                    .getInt();
+            int WoolHoeID = config.get("Items", "WoolHoe", "MoreTools:WoolHoe")
+                    .getInt();
+            int WoolHelmetID = config
+                    .get("Armor", "WoolHelmet", "MoreTools:WoolHelmet").getInt();
+            int WoolChestplateID = config.get("Armor", "WoolChestplate",
+                    "MoreTools:WoolChestplate").getInt();
+            int WoolLeggingsID = config.get("Armor", "WoolLeggings",
+                    "MoreTools:WoolLeggings").getInt();
+            int WoolBootsID = config.get("Armor", "WoolBoots", "MoreTools:WoolBoots")
+                    .getInt();
+            int RockWoolID = config.get("Blocks", "RockWool", "MoreTools:RockWool")
+                    .getInt();
 
-        int BedrockPickaxeID = config.get("Items", "BedrockPickaxe",
-                "MoreTools:BedrockPickaxe").getInt();
-        int BedrockSwordID = config.get("Items", "BedrockPickaxe",
-                "MoreTools:BedrockSword").getInt();
-        int BedrockShovelID = config.get("Items", "BedrockShovel",
-                "MoreTools:BedrockShovel").getInt();
-        int BedrockAxeID = config
-                .get("Items", "BedrockAxe", "MoreTools:BedrockAxe").getInt();
-        int BedrockHoeID = config
-                .get("Items", "BedrockHoe", "MoreTools:BedrockHoe").getInt();
-        int BedrockHelmetID = config.get("Armor", "BedrockHelmet",
-                "MoreTools:BedrockHelmet").getInt();
-        int BedrockChestplateID = config.get("Armor", "BedrockChestplate",
-                "MoreTools:BedrockChestplate").getInt();
-        int BedrockLeggingsID = config.get("Armor", "BedrockLeggings",
-                "MoreTools:BedrockLeggings").getInt();
-        int BedrockBootsID = config.get("Armor", "BedrockBoots",
-                "MoreTools:BedrockBoots").getInt();
-        int BedrockLumpID = config.get("Items", "BedrockLump",
-                "MoreTools:BedrockLump").getInt();
-        int ObsidianLumpID = config.get("Items", "ObsidianLump",
-                "MoreTools:ObsidianLump").getInt();
-        int ArtificialBedrockID = config.get("Blocks", "ArtificialBedrock",
-                "MoreTools:ArtificialBedrock").getInt();
-        int DiamondStickID = config.get("Items", "DiamondStick",
-                "MoreTools:DiamondStick").getInt();
+            int LonsdaleitePickaxeID = config.get("Items", "LonsdaleitePickaxe",
+                    "MoreTools:LonsdaleitePickaxe").getInt();
+            int LonsdaleiteSwordID = config.get("Items", "LonsdaleitePickaxe",
+                    "MoreTools:LonsdaleiteSword").getInt();
+            int LonsdaleiteShovelID = config.get("Items", "LonsdaleiteShovel",
+                    "MoreTools:LonsdaleiteShovel").getInt();
+            int LonsdaleiteAxeID = config.get("Items", "LonsdaleiteAxe",
+                    "MoreTools:LonsdaleiteAxe").getInt();
+            int LonsdaleiteHoeID = config.get("Items", "LonsdaleiteHoe",
+                    "MoreTools:LonsdaleiteHoe").getInt();
+            int LonsdaleiteHelmetID = config.get("Armor", "LonsdaleiteHelmet",
+                    "MoreTools:LonsdaleiteHelmet").getInt();
+            int LonsdaleiteChestplateID = config.get("Armor", "LonsdaleiteChestplate",
+                    "MoreTools:LonsdaleiteChestplate").getInt();
+            int LonsdaleiteLeggingsID = config.get("Armor", "LonsdaleiteLeggings",
+                    "MoreTools:LonsdaleiteLeggings").getInt();
+            int LonsdaleiteBootsID = config.get("Armor", "LonsdaleiteBoots",
+                    "MoreTools:LonsdaleiteBoots").getInt();
+            int LonsdaleiteGemID = config.get("Items", "LonsdaleiteGem",
+                    "MoreTools:LonsdaleiteGem").getInt();
+            int LonsdaleiteOreID = config.get("Blocks", "LonsdaleiteOre",
+                    "MoreTools:LonsdaleiteOre").getInt();
+            int LonsdaleiteBlockID = config.get("Blocks", "LonsdaleiteBlock",
+                    "MoreTools:LonsdaleiteBlock").getInt();
 
-        int QuartzPickaxeID = config.get("Items", "QuartzPickaxe",
-                "MoreTools:QuartzPickaxe").getInt();
-        int QuartzSwordID = config.get("Items", "QuartzPickaxe",
-                "MoreTools:QuartzSword").getInt();
-        int QuartzShovelID = config.get("Items", "QuartzShovel",
-                "MoreTools:QuartzShovel").getInt();
-        int QuartzAxeID = config.get("Items", "QuartzAxe", "MoreTools:QuartzAxe")
-                .getInt();
-        int QuartzHoeID = config.get("Items", "QuartzHoe", "MoreTools:QuartzHoe")
-                .getInt();
-        int QuartzHelmetID = config.get("Armor", "QuartzHelmet",
-                "MoreTools:QuartzHelmet").getInt();
-        int QuartzChestplateID = config.get("Armor", "QuartzChestplate",
-                "MoreTools:QuartzChestplate").getInt();
-        int QuartzLeggingsID = config.get("Armor", "QuartzLeggings",
-                "MoreTools:QuartzLeggings").getInt();
-        int QuartzBootsID = config.get("Armor", "QuartzBoots",
-                "MoreTools:QuartzBoots").getInt();
+            int BedrockPickaxeID = config.get("Items", "BedrockPickaxe",
+                    "MoreTools:BedrockPickaxe").getInt();
+            int BedrockSwordID = config.get("Items", "BedrockPickaxe",
+                    "MoreTools:BedrockSword").getInt();
+            int BedrockShovelID = config.get("Items", "BedrockShovel",
+                    "MoreTools:BedrockShovel").getInt();
+            int BedrockAxeID = config
+                    .get("Items", "BedrockAxe", "MoreTools:BedrockAxe").getInt();
+            int BedrockHoeID = config
+                    .get("Items", "BedrockHoe", "MoreTools:BedrockHoe").getInt();
+            int BedrockHelmetID = config.get("Armor", "BedrockHelmet",
+                    "MoreTools:BedrockHelmet").getInt();
+            int BedrockChestplateID = config.get("Armor", "BedrockChestplate",
+                    "MoreTools:BedrockChestplate").getInt();
+            int BedrockLeggingsID = config.get("Armor", "BedrockLeggings",
+                    "MoreTools:BedrockLeggings").getInt();
+            int BedrockBootsID = config.get("Armor", "BedrockBoots",
+                    "MoreTools:BedrockBoots").getInt();
+            int BedrockLumpID = config.get("Items", "BedrockLump",
+                    "MoreTools:BedrockLump").getInt();
+            int ObsidianLumpID = config.get("Items", "ObsidianLump",
+                    "MoreTools:ObsidianLump").getInt();
+            int ArtificialBedrockID = config.get("Blocks", "ArtificialBedrock",
+                    "MoreTools:ArtificialBedrock").getInt();
+            int DiamondStickID = config.get("Items", "DiamondStick",
+                    "MoreTools:DiamondStick").getInt();
 
-        int ArmorPlaceHolderID = config.get("CreativeTabs", "ArmorPlaceHolder",
-                "MoreTools:ArmorPlaceHolder").getInt();
-        int ToolsPlaceHolderID = config.get("CreativeTabs", "ToolsPlaceHolder",
-                "MoreTools:ToolsPlaceHolder").getInt();
+            int QuartzPickaxeID = config.get("Items", "QuartzPickaxe",
+                    "MoreTools:QuartzPickaxe").getInt();
+            int QuartzSwordID = config.get("Items", "QuartzPickaxe",
+                    "MoreTools:QuartzSword").getInt();
+            int QuartzShovelID = config.get("Items", "QuartzShovel",
+                    "MoreTools:QuartzShovel").getInt();
+            int QuartzAxeID = config.get("Items", "QuartzAxe", "MoreTools:QuartzAxe")
+                    .getInt();
+            int QuartzHoeID = config.get("Items", "QuartzHoe", "MoreTools:QuartzHoe")
+                    .getInt();
+            int QuartzHelmetID = config.get("Armor", "QuartzHelmet",
+                    "MoreTools:QuartzHelmet").getInt();
+            int QuartzChestplateID = config.get("Armor", "QuartzChestplate",
+                    "MoreTools:QuartzChestplate").getInt();
+            int QuartzLeggingsID = config.get("Armor", "QuartzLeggings",
+                    "MoreTools:QuartzLeggings").getInt();
+            int QuartzBootsID = config.get("Armor", "QuartzBoots",
+                    "MoreTools:QuartzBoots").getInt();
 
-        int DiamondFurnaceID = config.get("Blocks", "DiamondFurnace", "MoreTools:DiamondFurnace").getInt();
+            int ArmorPlaceHolderID = config.get("CreativeTabs", "ArmorPlaceHolder",
+                    "MoreTools:ArmorPlaceHolder").getInt();
+            int ToolsPlaceHolderID = config.get("CreativeTabs", "ToolsPlaceHolder",
+                    "MoreTools:ToolsPlaceHolder").getInt();
 
-        Property overrideBedrock = config.get("Enable/Disable",
-                "overrideBedrock", true);
-        overrideBedrock.comment = "Makes the vanilla bedrock breakable";
-        boolean overrideBedrockBoolean = overrideBedrock.getBoolean(true);
+            int DiamondFurnaceID = config.get("Blocks", "DiamondFurnace", "MoreTools:DiamondFurnace").getInt();
 
-        config.save();
+            Property overrideBedrock = config.get("Enable/Disable",
+                    "overrideBedrock", true);
+            overrideBedrock.comment = "Makes the vanilla bedrock breakable";
+            boolean overrideBedrockBoolean = overrideBedrock.getBoolean(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            config.save();
+        }
     }
-
 }

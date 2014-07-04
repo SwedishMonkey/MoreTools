@@ -1,0 +1,43 @@
+[21:43:51] [main/INFO]: Setting user: SwedishMonkey
+[21:43:52] [Client thread/INFO]: LWJGL Version: 2.9.1
+[21:43:58] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MoreTools
+[21:43:58] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[21:43:58] [Sound Library Loader/INFO]: Sound engine started
+[21:43:59] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[21:43:59] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MoreTools
+[21:43:59] [Client thread/INFO]: Created: 512x512 textures/items-atlas
+[21:43:59] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[21:44:00] [Sound Library Loader/INFO]: Sound engine started
+[21:44:05] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:music.menu
+[21:44:11] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:gui.button.press
+[21:44:12] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:gui.button.press
+[21:44:13] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:gui.button.press
+[21:44:25] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:music.menu
+[21:44:25] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:gui.button.press
+[21:44:27] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:gui.button.press
+[21:44:28] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[21:44:28] [Server thread/INFO]: Generating keypair
+[21:44:28] [Server thread/INFO]: Preparing start region for level 0
+[21:44:29] [Server thread/INFO]: Changing view distance to 16, from 10
+[21:44:29] [Server thread/INFO]: SwedishMonkey[local:E:36dfed22] logged in with entity id 386 at (-142.28485033331833, 76.21921228035778, 266.02921044633115)
+[21:44:29] [Server thread/INFO]: SwedishMonkey joined the game
+[21:44:34] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:gui.button.press
+[21:44:41] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:step.grass
+[21:44:42] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:step.grass
+[21:44:43] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:step.grass
+[21:44:47] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:mob.bat.takeoff
+[21:44:48] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:random.pop
+[21:44:51] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:music.game.creative
+[21:44:53] [Server thread/INFO]: Saving and pausing game...
+[21:44:53] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[21:44:53] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[21:44:53] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[21:44:53] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:gui.button.press
+[21:44:53] [Server thread/INFO]: Stopping server
+[21:44:53] [Server thread/INFO]: Saving players
+[21:44:53] [Server thread/INFO]: Saving worlds
+[21:44:53] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[21:44:53] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[21:44:53] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[21:44:55] [Client thread/WARN]: Unable to play unknown soundEvent: minecraft:gui.button.press
+[21:44:55] [Client thread/INFO]: Stopping!
