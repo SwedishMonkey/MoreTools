@@ -104,7 +104,7 @@ item.LonsdaleiteBoots.name=Lonsdaleite Boots
 item.LonsdaleiteGem.name=Lonsdaleite
 tile.LonsdaleiteOre.name=Lonsdaleite Ore
 tile.LonsdaleiteBlock.name=Lonsdaleite Block
-tile.Small LonsdaleiteMetorite.name=Small Lonsdaleite Meteorite
+tile.SmallLonsdaleiteMetorite.name=Small Lonsdaleite Meteorite
 tile.LargeLonsdaleiteMetorite.name=Large Lonsdaleite Meteorite
 tile.DiamondFurnace.name=Diamond Furnace
 

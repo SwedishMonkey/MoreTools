@@ -1,0 +1,21 @@
+[
+{
+  "modid": "MoreTools",
+  "name": "MoreTools",
+  "description": "My first mod, adds some more tools and armor. Special thanks to HiTeeN for allowing me to use some of his textures, and to ThePhysican2000 for re-making the Lonsdaleite Texture.",
+  "version": "2.0.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [
+    "SwedishMonkey"
+  ],
+  "credits": "See bottom",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]

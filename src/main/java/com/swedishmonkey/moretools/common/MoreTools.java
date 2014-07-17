@@ -4,12 +4,14 @@ import com.swedishmonkey.moretools.armor.*;
 import com.swedishmonkey.moretools.axe.*;
 import com.swedishmonkey.moretools.block.*;
 import com.swedishmonkey.moretools.block.tileentity.DiamondFurnaceTileEntity;
+import com.swedishmonkey.moretools.block.tileentity.TileEntitySmallLonsdaleiteMetorite;
 import com.swedishmonkey.moretools.block.worldgen.BedrockWG;
-import com.swedishmonkey.moretools.block.worldgen.LonsdaleiteOreWG;
+import com.swedishmonkey.moretools.block.worldgen.SmallLonsdaleiteMetoriteWG;
 import com.swedishmonkey.moretools.creativeTabs.TabArmor;
 import com.swedishmonkey.moretools.creativeTabs.TabArmorPlaceHolder;
 import com.swedishmonkey.moretools.creativeTabs.TabTools;
 import com.swedishmonkey.moretools.creativeTabs.TabToolsPlaceHolder;
+import com.swedishmonkey.moretools.entity.EntitySmallLonsdaleiteMetorite;
 import com.swedishmonkey.moretools.gui.DiamondFurnaceGuiHandler;
 import com.swedishmonkey.moretools.hoe.*;
 import com.swedishmonkey.moretools.item.BedrockLump;
@@ -19,11 +21,13 @@ import com.swedishmonkey.moretools.item.ObsidianLump;
 import com.swedishmonkey.moretools.pickaxe.*;
 import com.swedishmonkey.moretools.shovel.*;
 import com.swedishmonkey.moretools.sword.*;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -37,16 +41,16 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.logging.Logger;
 
-@Mod(modid = MoreTools.ID, name = MoreTools.NAME, version = MoreTools.VERSION)
+@Mod(modid = MoreTools.ID, name = MoreTools.NAME, version = MoreTools.VERSION, guiFactory = MoreTools.GUI_FACTORY_CLASS)
 public class MoreTools<FMLInitialization> {
     public static final String ID = "MoreTools";
     public static final String NAME = "MoreTools";
     public static final String VERSION = "1.7.2-2.0.0";
+    public static final String GUI_FACTORY_CLASS = "com.swedishmonkey.moretools.gui.GuiFactory";
 
     public static Logger logger;
 
@@ -54,7 +58,9 @@ public class MoreTools<FMLInitialization> {
     public static MoreTools instance;
 
     @SidedProxy(clientSide = "com.swedishmonkey.moretools.common.ClientProxy", serverSide = "com.swedishmonkey.moretools.common.ClientProxy")
+
     public static CommonProxy proxy;
+
     public static ToolMaterial toolDirt = EnumHelper.addToolMaterial("dirt", 0,
             20, 2.0F, 0.0F, 5);
     public static ToolMaterial toolEmerald = EnumHelper.addToolMaterial(
@@ -104,350 +110,351 @@ public class MoreTools<FMLInitialization> {
     public static CreativeTabs tabArmor = new TabArmor(
             CreativeTabs.getNextID(), "Armor");
     public static Item TabToolsPlaceHolder = new TabToolsPlaceHolder(
-            Configs.ToolsPlaceHolderID)
+            ConfigurationHandler.ToolsPlaceHolderID)
             .setUnlocalizedName("TabToolsPlaceHolder").setTextureName(
                     "MoreTools:BedrockPickaxe");
     public static Item TabArmorPlaceHolder = new TabArmorPlaceHolder(
-            Configs.ArmorPlaceHolderID)
+            ConfigurationHandler.ArmorPlaceHolderID)
             .setUnlocalizedName("TabArmorPlaceHolder").setTextureName(
                     "MoreTools:BedrockChestplate");
-    public static LonsdaleiteOreWG LonsdaleiteWG = new LonsdaleiteOreWG();
+    public static SmallLonsdaleiteMetoriteWG LonsdaleiteWG = new SmallLonsdaleiteMetoriteWG();
     public static BedrockWG BedrockWG = new BedrockWG();
-    public static Item DirtPickaxe = new DirtPickaxe(Configs.DirtPickaxeID,
+    public static Item DirtPickaxe = new DirtPickaxe(ConfigurationHandler.DirtPickaxeID,
             toolDirt).setUnlocalizedName("DirtPickaxe").setTextureName(
             "MoreTools:DirtPickaxe");
-    public static Item DirtSword = new DirtSword(Configs.DirtSwordID, toolDirt)
+    public static Item DirtSword = new DirtSword(ConfigurationHandler.DirtSwordID, toolDirt)
             .setUnlocalizedName("DirtSword").setTextureName(
                     "MoreTools:DirtSword");
-    public static Item DirtShovel = new DirtShovel(Configs.DirtShovelID,
+    public static Item DirtShovel = new DirtShovel(ConfigurationHandler.DirtShovelID,
             toolDirt).setUnlocalizedName("DirtShovel").setTextureName(
             "MoreTools:DirtShovel");
-    public static Item DirtAxe = new DirtAxe(Configs.DirtAxeID, toolDirt)
+    public static Item DirtAxe = new DirtAxe(ConfigurationHandler.DirtAxeID, toolDirt)
             .setUnlocalizedName("DirtAxe").setTextureName("MoreTools:DirtAxe");
-    public static Item DirtHoe = new DirtHoe(Configs.DirtHoeID, toolDirt)
+    public static Item DirtHoe = new DirtHoe(ConfigurationHandler.DirtHoeID, toolDirt)
             .setUnlocalizedName("DirtHoe").setTextureName("MoreTools:DirtHoe");
     public static Item EmeraldPickaxe = new EmeraldPickaxe(
-            Configs.EmeraldPickaxeID, toolEmerald).setUnlocalizedName(
+            ConfigurationHandler.EmeraldPickaxeID, toolEmerald).setUnlocalizedName(
             "EmeraldPickaxe").setTextureName("MoreTools:EmeraldPickaxe");
-    public static Item EmeraldSword = new EmeraldSword(Configs.EmeraldSwordID,
+    public static Item EmeraldSword = new EmeraldSword(ConfigurationHandler.EmeraldSwordID,
             toolEmerald).setUnlocalizedName("EmeraldSword").setTextureName(
             "MoreTools:EmeraldSword");
     public static Item EmeraldShovel = new EmeraldShovel(
-            Configs.EmeraldShovelID, toolEmerald).setUnlocalizedName(
+            ConfigurationHandler.EmeraldShovelID, toolEmerald).setUnlocalizedName(
             "EmeraldShovel").setTextureName("MoreTools:EmeraldShovel");
-    public static Item EmeraldAxe = new EmeraldAxe(Configs.EmeraldAxeID,
+    public static Item EmeraldAxe = new EmeraldAxe(ConfigurationHandler.EmeraldAxeID,
             toolEmerald).setUnlocalizedName("EmeraldAxe").setTextureName(
             "MoreTools:EmeraldAxe");
-    public static Item EmeraldHoe = new EmeraldHoe(Configs.EmeraldHoeID,
+    public static Item EmeraldHoe = new EmeraldHoe(ConfigurationHandler.EmeraldHoeID,
             toolEmerald).setUnlocalizedName("EmeraldHoe").setTextureName(
             "MoreTools:EmeraldHoe");
     public static Item RedstonePickaxe = new RedstonePickaxe(
-            Configs.RedstonePickaxeID, toolRedstone).setUnlocalizedName(
+            ConfigurationHandler.RedstonePickaxeID, toolRedstone).setUnlocalizedName(
             "RedstonePickaxe").setTextureName("MoreTools:RedstonePickaxe");
     public static Item RedstoneSword = new RedstoneSword(
-            Configs.RedstoneSwordID, toolRedstone).setUnlocalizedName(
+            ConfigurationHandler.RedstoneSwordID, toolRedstone).setUnlocalizedName(
             "RedstoneSword").setTextureName("MoreTools:RedstoneSword");
     public static Item RedstoneShovel = new RedstoneShovel(
-            Configs.RedstoneShovelID, toolRedstone).setUnlocalizedName(
+            ConfigurationHandler.RedstoneShovelID, toolRedstone).setUnlocalizedName(
             "RedstoneShovel").setTextureName("MoreTools:RedstoneShovel");
-    public static Item RedstoneAxe = new RedstoneAxe(Configs.RedstoneAxeID,
+    public static Item RedstoneAxe = new RedstoneAxe(ConfigurationHandler.RedstoneAxeID,
             toolRedstone).setUnlocalizedName("RedstoneAxe").setTextureName(
             "MoreTools:RedstoneAxe");
-    public static Item RedstoneHoe = new RedstoneHoe(Configs.RedstoneHoeID,
+    public static Item RedstoneHoe = new RedstoneHoe(ConfigurationHandler.RedstoneHoeID,
             toolRedstone).setUnlocalizedName("RedstoneHoe").setTextureName(
             "MoreTools:RedstoneHoe");
-    public static Item GlassPickaxe = new GlassPickaxe(Configs.GlassPickaxeID,
+    public static Item GlassPickaxe = new GlassPickaxe(ConfigurationHandler.GlassPickaxeID,
             toolGlass).setUnlocalizedName("GlassPickaxe").setTextureName(
             "MoreTools:GlassPickaxe");
-    public static Item GlassSword = new GlassSword(Configs.GlassSwordID,
+    public static Item GlassSword = new GlassSword(ConfigurationHandler.GlassSwordID,
             toolGlass).setUnlocalizedName("GlassSword").setTextureName(
             "MoreTools:GlassSword");
-    public static Item GlassShovel = new GlassShovel(Configs.GlassShovelID,
+    public static Item GlassShovel = new GlassShovel(ConfigurationHandler.GlassShovelID,
             toolGlass).setUnlocalizedName("GlassShovel").setTextureName(
             "MoreTools:GlassShovel");
-    public static Item GlassAxe = new GlassAxe(Configs.GlassAxeID, toolGlass)
+    public static Item GlassAxe = new GlassAxe(ConfigurationHandler.GlassAxeID, toolGlass)
             .setUnlocalizedName("GlassAxe")
             .setTextureName("MoreTools:GlassAxe");
-    public static Item GlassHoe = new GlassHoe(Configs.GlassHoeID, toolGlass)
+    public static Item GlassHoe = new GlassHoe(ConfigurationHandler.GlassHoeID, toolGlass)
             .setUnlocalizedName("GlassHoe")
             .setTextureName("MoreTools:GlassHoe");
     public static Block CompressedGlass = new CompressedGlass(
-            Configs.CompressedGlassID, Material.glass).setBlockName(
+            ConfigurationHandler.CompressedGlassID, Material.glass).setBlockName(
             "CompressedGlass").setBlockTextureName("MoreTools:CompressedGlass");
     public static Block HardenedGlass = new HardenedGlass(
-            Configs.HardenedGlassID, Material.glass).setBlockName(
+            ConfigurationHandler.HardenedGlassID, Material.glass).setBlockName(
             "HardenedGlass").setBlockTextureName("MoreTools:HardenedGlass");
-    public static Block RefinedGlass = new RefinedGlass(Configs.RefinedGlassID,
+    public static Block RefinedGlass = new RefinedGlass(ConfigurationHandler.RefinedGlassID,
             Material.glass).setBlockName("RefinedGlass").setBlockTextureName(
             "MoreTools:RefinedGlass");
-    public static Item LapisPickaxe = new LapisPickaxe(Configs.LapisPickaxeID,
+    public static Item LapisPickaxe = new LapisPickaxe(ConfigurationHandler.LapisPickaxeID,
             toolLapis).setUnlocalizedName("LapisPickaxe").setTextureName(
             "MoreTools:LapisPickaxe");
-    public static Item LapisSword = new LapisSword(Configs.LapisSwordID,
+    public static Item LapisSword = new LapisSword(ConfigurationHandler.LapisSwordID,
             toolLapis).setUnlocalizedName("LapisSword").setTextureName(
             "MoreTools:LapisSword");
-    public static Item LapisShovel = new LapisShovel(Configs.LapisShovelID,
+    public static Item LapisShovel = new LapisShovel(ConfigurationHandler.LapisShovelID,
             toolLapis).setUnlocalizedName("LapisShovel").setTextureName(
             "MoreTools:LapisShovel");
-    public static Item LapisAxe = new LapisAxe(Configs.LapisAxeID, toolLapis)
+    public static Item LapisAxe = new LapisAxe(ConfigurationHandler.LapisAxeID, toolLapis)
             .setUnlocalizedName("LapisAxe")
             .setTextureName("MoreTools:LapisAxe");
-    public static Item LapisHoe = new LapisHoe(Configs.LapisHoeID, toolLapis)
+    public static Item LapisHoe = new LapisHoe(ConfigurationHandler.LapisHoeID, toolLapis)
             .setUnlocalizedName("LapisHoe")
             .setTextureName("MoreTools:LapisHoe");
     public static Item ObsidianPickaxe = new ObsidianPickaxe(
-            Configs.ObsidianPickaxeID, toolObsidian).setUnlocalizedName(
+            ConfigurationHandler.ObsidianPickaxeID, toolObsidian).setUnlocalizedName(
             "ObsidianPickaxe").setTextureName("MoreTools:ObsidianPickaxe");
     public static Item ObsidianSword = new ObsidianSword(
-            Configs.ObsidianSwordID, toolObsidian).setUnlocalizedName(
+            ConfigurationHandler.ObsidianSwordID, toolObsidian).setUnlocalizedName(
             "ObsidianSword").setTextureName("MoreTools:ObsidianSword");
     public static Item ObsidianShovel = new ObsidianShovel(
-            Configs.ObsidianShovelID, toolObsidian).setUnlocalizedName(
+            ConfigurationHandler.ObsidianShovelID, toolObsidian).setUnlocalizedName(
             "ObsidianShovel").setTextureName("MoreTools:ObsidianShovel");
-    public static Item ObsidianAxe = new ObsidianAxe(Configs.ObsidianAxeID,
+    public static Item ObsidianAxe = new ObsidianAxe(ConfigurationHandler.ObsidianAxeID,
             toolObsidian).setUnlocalizedName("ObsidianAxe").setTextureName(
             "MoreTools:ObsidianAxe");
-    public static Item ObsidianHoe = new ObsidianHoe(Configs.ObsidianHoeID,
+    public static Item ObsidianHoe = new ObsidianHoe(ConfigurationHandler.ObsidianHoeID,
             toolObsidian).setUnlocalizedName("ObsidianHoe").setTextureName(
             "MoreTools:ObsidianHoe");
-    public static Item CoalPickaxe = new CoalPickaxe(Configs.CoalPickaxeID,
+    public static Item CoalPickaxe = new CoalPickaxe(ConfigurationHandler.CoalPickaxeID,
             toolCoal).setUnlocalizedName("CoalPickaxe").setTextureName(
             "MoreTools:CoalPickaxe");
-    public static Item CoalSword = new CoalSword(Configs.CoalSwordID, toolCoal)
+    public static Item CoalSword = new CoalSword(ConfigurationHandler.CoalSwordID, toolCoal)
             .setUnlocalizedName("CoalSword").setTextureName(
                     "MoreTools:CoalSword");
-    public static Item CoalShovel = new CoalShovel(Configs.CoalShovelID,
+    public static Item CoalShovel = new CoalShovel(ConfigurationHandler.CoalShovelID,
             toolCoal).setUnlocalizedName("CoalShovel").setTextureName(
             "MoreTools:CoalShovel");
-    public static Item CoalAxe = new CoalAxe(Configs.CoalAxeID, toolCoal)
+    public static Item CoalAxe = new CoalAxe(ConfigurationHandler.CoalAxeID, toolCoal)
             .setUnlocalizedName("CoalAxe").setTextureName("MoreTools:CoalAxe");
-    public static Item CoalHoe = new CoalHoe(Configs.CoalHoeID, toolCoal)
+    public static Item CoalHoe = new CoalHoe(ConfigurationHandler.CoalHoeID, toolCoal)
             .setUnlocalizedName("CoalHoe").setTextureName("MoreTools:CoalHoe");
-    public static Item WoolPickaxe = new WoolPickaxe(Configs.WoolPickaxeID,
+    public static Item WoolPickaxe = new WoolPickaxe(ConfigurationHandler.WoolPickaxeID,
             toolWool).setUnlocalizedName("WoolPickaxe").setTextureName(
             "MoreTools:WoolPickaxe");
-    public static Item WoolSword = new WoolSword(Configs.WoolSwordID, toolWool)
+    public static Item WoolSword = new WoolSword(ConfigurationHandler.WoolSwordID, toolWool)
             .setUnlocalizedName("WoolSword").setTextureName(
                     "MoreTools:WoolSword");
-    public static Item WoolShovel = new WoolShovel(Configs.WoolShovelID,
+    public static Item WoolShovel = new WoolShovel(ConfigurationHandler.WoolShovelID,
             toolWool).setUnlocalizedName("WoolShovel").setTextureName(
             "MoreTools:WoolShovel");
-    public static Item WoolAxe = new WoolAxe(Configs.WoolAxeID, toolWool)
+    public static Item WoolAxe = new WoolAxe(ConfigurationHandler.WoolAxeID, toolWool)
             .setUnlocalizedName("WoolAxe").setTextureName("MoreTools:WoolAxe");
-    public static Item WoolHoe = new WoolHoe(Configs.WoolHoeID, toolWool)
+    public static Item WoolHoe = new WoolHoe(ConfigurationHandler.WoolHoeID, toolWool)
             .setUnlocalizedName("WoolHoe").setTextureName("MoreTools:WoolHoe");
-    public static Block RockWool = new RockWool(Configs.RockWoolID,
+    public static Block RockWool = new RockWool(ConfigurationHandler.RockWoolID,
             Material.ground).setBlockName("RockWool").setBlockTextureName(
             "MoreTools:RockWool");
     public static Item LonsdaleitePickaxe = new LonsdaleitePickaxe(
-            Configs.LonsdaleitePickaxeID, toolLonsdaleite).setUnlocalizedName(
+            ConfigurationHandler.LonsdaleitePickaxeID, toolLonsdaleite).setUnlocalizedName(
             "LonsdaleitePickaxe")
             .setTextureName("MoreTools:LonsdaleitePickaxe");
     public static Item LonsdaleiteSword = new LonsdaleiteSword(
-            Configs.LonsdaleiteSwordID, toolLonsdaleite).setUnlocalizedName(
+            ConfigurationHandler.LonsdaleiteSwordID, toolLonsdaleite).setUnlocalizedName(
             "LonsdaleiteSword").setTextureName("MoreTools:LonsdaleiteSword");
     public static Item LonsdaleiteShovel = new LonsdaleiteShovel(
-            Configs.LonsdaleiteShovelID, toolLonsdaleite).setUnlocalizedName(
+            ConfigurationHandler.LonsdaleiteShovelID, toolLonsdaleite).setUnlocalizedName(
             "LonsdaleiteShovel").setTextureName("MoreTools:LonsdaleiteShovel");
     public static Item LonsdaleiteAxe = new LonsdaleiteAxe(
-            Configs.LonsdaleiteAxeID, toolLonsdaleite).setUnlocalizedName(
+            ConfigurationHandler.LonsdaleiteAxeID, toolLonsdaleite).setUnlocalizedName(
             "LonsdaleiteAxe").setTextureName("MoreTools:LonsdaleiteAxe");
     public static Item LonsdaleiteHoe = new LonsdaleiteHoe(
-            Configs.LonsdaleiteHoeID, toolLonsdaleite).setUnlocalizedName(
+            ConfigurationHandler.LonsdaleiteHoeID, toolLonsdaleite).setUnlocalizedName(
             "LonsdaleiteHoe").setTextureName("MoreTools:LonsdaleiteHoe");
     public static Item LonsdaleiteGem = new LonsdaleiteGem(
-            Configs.LonsdaleiteGemID).setUnlocalizedName("LonsdaleiteGem")
+            ConfigurationHandler.LonsdaleiteGemID).setUnlocalizedName("LonsdaleiteGem")
             .setTextureName("MoreTools:Lonsdaleite");
     public static Block LonsdaleiteOre = new LonsdaleiteOre(
-            Configs.LonsdaleiteOreID, Material.ground).setBlockName(
+            ConfigurationHandler.LonsdaleiteOreID, Material.ground).setBlockName(
             "LonsdaleiteOre").setBlockTextureName("MoreTools:LonsdaleiteOre");
     public static Block LonsdaleiteBlock = new LonsdaleiteBlock(
-            Configs.LonsdaleiteBlockID, Material.dragonEgg).setBlockName(
+            ConfigurationHandler.LonsdaleiteBlockID, Material.dragonEgg).setBlockName(
             "LonsdaleiteBlock").setBlockTextureName(
             "MoreTools:LonsdaleiteBlock");
     public static Item BedrockPickaxe = new BedrockPickaxe(
-            Configs.BedrockPickaxeID, toolBedrock).setUnlocalizedName(
+            ConfigurationHandler.BedrockPickaxeID, toolBedrock).setUnlocalizedName(
             "BedrockPickaxe").setTextureName("MoreTools:BedrockPickaxe");
-    public static Item BedrockSword = new BedrockSword(Configs.BedrockSwordID,
+    public static Item BedrockSword = new BedrockSword(ConfigurationHandler.BedrockSwordID,
             toolBedrock).setUnlocalizedName("BedrockSword").setTextureName(
             "MoreTools:BedrockSword");
     public static Item BedrockShovel = new BedrockShovel(
-            Configs.BedrockShovelID, toolBedrock).setUnlocalizedName(
+            ConfigurationHandler.BedrockShovelID, toolBedrock).setUnlocalizedName(
             "BedrockShovel").setTextureName("MoreTools:BedrockShovel");
-    public static Item BedrockAxe = new BedrockAxe(Configs.BedrockAxeID,
+    public static Item BedrockAxe = new BedrockAxe(ConfigurationHandler.BedrockAxeID,
             toolBedrock).setUnlocalizedName("BedrockAxe").setTextureName(
             "MoreTools:BedrockAxe");
-    public static Item BedrockHoe = new BedrockHoe(Configs.BedrockHoeID,
+    public static Item BedrockHoe = new BedrockHoe(ConfigurationHandler.BedrockHoeID,
             toolBedrock).setUnlocalizedName("BedrockHoe").setTextureName(
             "MoreTools:BedrockHoe");
-    public static Item BedrockLump = new BedrockLump(Configs.BedrockLumpID)
+    public static Item BedrockLump = new BedrockLump(ConfigurationHandler.BedrockLumpID)
             .setUnlocalizedName("BedrockLump").setTextureName(
                     "MoreTools:BedrockLump");
-    public static Item DiamondStick = new DiamondStick(Configs.DiamondStickID)
+    public static Item DiamondStick = new DiamondStick(ConfigurationHandler.DiamondStickID)
             .setUnlocalizedName("DiamondStick").setTextureName(
                     "MoreTools:DiamondStick");
-    public static Item ObsidianLump = new ObsidianLump(Configs.ObsidianLumpID)
+    public static Item ObsidianLump = new ObsidianLump(ConfigurationHandler.ObsidianLumpID)
             .setUnlocalizedName("ObsidianLump").setTextureName(
                     "MoreTools:ObsidianLump");
     public static Block ArtificialBedrock = new ArtificialBedrock(
-            Configs.ArtificialBedrockID, Material.ground).setBlockName(
+            ConfigurationHandler.ArtificialBedrockID, Material.ground).setBlockName(
             "ArtificialBedrock").setBlockTextureName("MoreTools:FakeBedrock");
     public static Item QuartzPickaxe = new QuartzPickaxe(
-            Configs.QuartzPickaxeID, toolQuartz).setUnlocalizedName(
+            ConfigurationHandler.QuartzPickaxeID, toolQuartz).setUnlocalizedName(
             "QuartzPickaxe").setTextureName("MoreTools:QuartzPickaxe");
-    public static Item QuartzSword = new QuartzSword(Configs.QuartzSwordID,
+    public static Item QuartzSword = new QuartzSword(ConfigurationHandler.QuartzSwordID,
             toolQuartz).setUnlocalizedName("QuartzSword").setTextureName(
             "MoreTools:QuartzSword");
-    public static Item QuartzShovel = new QuartzShovel(Configs.QuartzShovelID,
+    public static Item QuartzShovel = new QuartzShovel(ConfigurationHandler.QuartzShovelID,
             toolQuartz).setUnlocalizedName("QuartzShovel").setTextureName(
             "MoreTools:QuartzShovel");
-    public static Item QuartzAxe = new QuartzAxe(Configs.QuartzAxeID, toolQuartz)
+    public static Item QuartzAxe = new QuartzAxe(ConfigurationHandler.QuartzAxeID, toolQuartz)
             .setUnlocalizedName("QuartzAxe").setTextureName(
                     "MoreTools:QuartzAxe");
-    public static Item QuartzHoe = new QuartzHoe(Configs.QuartzHoeID, toolQuartz)
+    public static Item QuartzHoe = new QuartzHoe(ConfigurationHandler.QuartzHoeID, toolQuartz)
             .setUnlocalizedName("QuartzHoe").setTextureName(
                     "MoreTools:QuartzHoe");
     public static Item DirtHelmet = new DirtArmor(armorDirt,
-            Configs.DirtHelmetID, 0).setUnlocalizedName("DirtHelmet")
+            ConfigurationHandler.DirtHelmetID, 0).setUnlocalizedName("DirtHelmet")
             .setTextureName("MoreTools:DirtHelmet");
     public static Item DirtChestplate = new DirtArmor(armorDirt,
-            Configs.DirtChestplateID, 1).setUnlocalizedName("DirtChestplate")
+            ConfigurationHandler.DirtChestplateID, 1).setUnlocalizedName("DirtChestplate")
             .setTextureName("MoreTools:DirtChestplate");
     public static Item DirtLeggings = new DirtArmor(armorDirt,
-            Configs.DirtLeggingsID, 2).setUnlocalizedName("DirtLeggings")
+            ConfigurationHandler.DirtLeggingsID, 2).setUnlocalizedName("DirtLeggings")
             .setTextureName("MoreTools:DirtLeggings");
-    public static Item DirtBoots = new DirtArmor(armorDirt, Configs.DirtBootsID,
+    public static Item DirtBoots = new DirtArmor(armorDirt, ConfigurationHandler.DirtBootsID,
             3).setUnlocalizedName("DirtBoots").setTextureName(
             "MoreTools:DirtBoots");
     public static Item EmeraldHelmet = new EmeraldArmor(armorEmerald,
-            Configs.EmeraldHelmetID, 0).setUnlocalizedName("EmeraldHelmet")
+            ConfigurationHandler.EmeraldHelmetID, 0).setUnlocalizedName("EmeraldHelmet")
             .setTextureName("MoreTools:EmeraldHelmet");
     public static Item EmeraldChestplate = new EmeraldArmor(armorEmerald,
-            Configs.EmeraldChestplateID, 1).setUnlocalizedName(
+            ConfigurationHandler.EmeraldChestplateID, 1).setUnlocalizedName(
             "EmeraldChestplate").setTextureName("MoreTools:EmeraldChestplate");
     public static Item EmeraldLeggings = new EmeraldArmor(armorEmerald,
-            Configs.EmeraldLeggingsID, 2).setUnlocalizedName("EmeraldLeggings")
+            ConfigurationHandler.EmeraldLeggingsID, 2).setUnlocalizedName("EmeraldLeggings")
             .setTextureName("MoreTools:EmeraldLeggings");
     public static Item EmeraldBoots = new EmeraldArmor(armorEmerald,
-            Configs.EmeraldBootsID, 3).setUnlocalizedName("EmeraldBoots")
+            ConfigurationHandler.EmeraldBootsID, 3).setUnlocalizedName("EmeraldBoots")
             .setTextureName("MoreTools:EmeraldBoots");
     public static Item RedstoneHelmet = new RedstoneArmor(armorRedstone,
-            Configs.RedstoneHelmetID, 0).setUnlocalizedName("RedstoneHelmet")
+            ConfigurationHandler.RedstoneHelmetID, 0).setUnlocalizedName("RedstoneHelmet")
             .setTextureName("MoreTools:RedstoneHelmet");
     public static Item RedstoneChestplate = new RedstoneArmor(armorRedstone,
-            Configs.RedstoneChestplateID, 1).setUnlocalizedName(
+            ConfigurationHandler.RedstoneChestplateID, 1).setUnlocalizedName(
             "RedstoneChestplate")
             .setTextureName("MoreTools:RedstoneChestplate");
     public static Item RedstoneLeggings = new RedstoneArmor(armorRedstone,
-            Configs.RedstoneLeggingsID, 2)
+            ConfigurationHandler.RedstoneLeggingsID, 2)
             .setUnlocalizedName("RedstoneLeggings").setTextureName(
                     "MoreTools:RedstoneLeggings");
     public static Item RedstoneBoots = new RedstoneArmor(armorRedstone,
-            Configs.RedstoneBootsID, 3).setUnlocalizedName("RedstoneBoots")
+            ConfigurationHandler.RedstoneBootsID, 3).setUnlocalizedName("RedstoneBoots")
             .setTextureName("MoreTools:RedstoneBoots");
     public static Item GlassHelmet = new GlassArmor(armorGlass,
-            Configs.GlassHelmetID, 0).setUnlocalizedName("GlassHelmet")
+            ConfigurationHandler.GlassHelmetID, 0).setUnlocalizedName("GlassHelmet")
             .setTextureName("MoreTools:GlassHelmet");
     public static Item GlassChestplate = new GlassArmor(armorGlass,
-            Configs.GlassChestplateID, 1).setUnlocalizedName("GlassChestplate")
+            ConfigurationHandler.GlassChestplateID, 1).setUnlocalizedName("GlassChestplate")
             .setTextureName("MoreTools:GlassChestplate");
     public static Item GlassLeggings = new GlassArmor(armorGlass,
-            Configs.GlassLeggingsID, 2).setUnlocalizedName("GlassLeggings")
+            ConfigurationHandler.GlassLeggingsID, 2).setUnlocalizedName("GlassLeggings")
             .setTextureName("MoreTools:GlassLeggings");
     public static Item GlassBoots = new GlassArmor(armorGlass,
-            Configs.GlassBootsID, 3).setUnlocalizedName("GlassBoots")
+            ConfigurationHandler.GlassBootsID, 3).setUnlocalizedName("GlassBoots")
             .setTextureName("MoreTools:GlassBoots");
     public static Item LapisHelmet = new LapisArmor(armorLapis,
-            Configs.LapisHelmetID, 0).setUnlocalizedName("LapisHelmet")
+            ConfigurationHandler.LapisHelmetID, 0).setUnlocalizedName("LapisHelmet")
             .setTextureName("MoreTools:LapisHelmet");
     public static Item LapisChestplate = new LapisArmor(armorLapis,
-            Configs.LapisChestplateID, 1).setUnlocalizedName("LapisChestplate")
+            ConfigurationHandler.LapisChestplateID, 1).setUnlocalizedName("LapisChestplate")
             .setTextureName("MoreTools:LapisChestplate");
     public static Item LapisLeggings = new LapisArmor(armorLapis,
-            Configs.LapisLeggingsID, 2).setUnlocalizedName("LapisLeggings")
+            ConfigurationHandler.LapisLeggingsID, 2).setUnlocalizedName("LapisLeggings")
             .setTextureName("MoreTools:LapisLeggings");
     public static Item LapisBoots = new LapisArmor(armorLapis,
-            Configs.LapisBootsID, 3).setUnlocalizedName("LapisBoots")
+            ConfigurationHandler.LapisBootsID, 3).setUnlocalizedName("LapisBoots")
             .setTextureName("MoreTools:LapisBoots");
     public static Item ObsidianHelmet = new ObsidianArmor(armorObsidian,
-            Configs.ObsidianHelmetID, 0).setUnlocalizedName("ObsidianHelmet")
+            ConfigurationHandler.ObsidianHelmetID, 0).setUnlocalizedName("ObsidianHelmet")
             .setTextureName("MoreTools:ObsidianHelmet");
     public static Item ObsidianChestplate = new ObsidianArmor(armorObsidian,
-            Configs.ObsidianChestplateID, 1).setUnlocalizedName(
+            ConfigurationHandler.ObsidianChestplateID, 1).setUnlocalizedName(
             "ObsidianChestplate")
             .setTextureName("MoreTools:ObsidianChestplate");
     public static Item ObsidianLeggings = new ObsidianArmor(armorObsidian,
-            Configs.ObsidianLeggingsID, 2)
+            ConfigurationHandler.ObsidianLeggingsID, 2)
             .setUnlocalizedName("ObsidianLeggings").setTextureName(
                     "MoreTools:ObsidianLeggings");
     public static Item ObsidianBoots = new ObsidianArmor(armorObsidian,
-            Configs.ObsidianBootsID, 3).setUnlocalizedName("ObsidianBoots")
+            ConfigurationHandler.ObsidianBootsID, 3).setUnlocalizedName("ObsidianBoots")
             .setTextureName("MoreTools:ObsidianBoots");
     public static Item CoalHelmet = new CoalArmor(armorCoal,
-            Configs.CoalHelmetID, 0).setUnlocalizedName("CoalHelmet")
+            ConfigurationHandler.CoalHelmetID, 0).setUnlocalizedName("CoalHelmet")
             .setTextureName("MoreTools:CoalHelmet");
     public static Item CoalChestplate = new CoalArmor(armorCoal,
-            Configs.CoalChestplateID, 1).setUnlocalizedName("CoalChestplate")
+            ConfigurationHandler.CoalChestplateID, 1).setUnlocalizedName("CoalChestplate")
             .setTextureName("MoreTools:CoalChestplate");
     public static Item CoalLeggings = new CoalArmor(armorCoal,
-            Configs.CoalLeggingsID, 2).setUnlocalizedName("CoalLeggings")
+            ConfigurationHandler.CoalLeggingsID, 2).setUnlocalizedName("CoalLeggings")
             .setTextureName("MoreTools:CoalLeggings");
-    public static Item CoalBoots = new CoalArmor(armorCoal, Configs.CoalBootsID,
+    public static Item CoalBoots = new CoalArmor(armorCoal, ConfigurationHandler.CoalBootsID,
             3).setUnlocalizedName("CoalBoots").setTextureName(
             "MoreTools:CoalBoots");
     public static Item WoolHelmet = new WoolArmor(armorWool,
-            Configs.WoolHelmetID, 0).setUnlocalizedName("WoolHelmet")
+            ConfigurationHandler.WoolHelmetID, 0).setUnlocalizedName("WoolHelmet")
             .setTextureName("MoreTools:WoolHelmet");
     public static Item WoolChestplate = new WoolArmor(armorWool,
-            Configs.WoolChestplateID, 1).setUnlocalizedName("WoolChestplate")
+            ConfigurationHandler.WoolChestplateID, 1).setUnlocalizedName("WoolChestplate")
             .setTextureName("MoreTools:WoolChestplate");
     public static Item WoolLeggings = new WoolArmor(armorWool,
-            Configs.WoolLeggingsID, 2).setUnlocalizedName("WoolLeggings")
+            ConfigurationHandler.WoolLeggingsID, 2).setUnlocalizedName("WoolLeggings")
             .setTextureName("MoreTools:WoolLeggings");
-    public static Item WoolBoots = new WoolArmor(armorWool, Configs.WoolBootsID,
+    public static Item WoolBoots = new WoolArmor(armorWool, ConfigurationHandler.WoolBootsID,
             3).setUnlocalizedName("WoolBoots").setTextureName(
             "MoreTools:WoolBoots");
     public static Item LonsdaleiteHelmet = new LonsdaleiteArmor(
-            armorLonsdaleite, Configs.LonsdaleiteHelmetID, 0)
+            armorLonsdaleite, ConfigurationHandler.LonsdaleiteHelmetID, 0)
             .setUnlocalizedName("LonsdaleiteHelmet").setTextureName(
                     "MoreTools:LonsdaleiteHelmet");
     public static Item LonsdaleiteChestplate = new LonsdaleiteArmor(
-            armorLonsdaleite, Configs.LonsdaleiteChestplateID, 1)
+            armorLonsdaleite, ConfigurationHandler.LonsdaleiteChestplateID, 1)
             .setUnlocalizedName("LonsdaleiteChestplate").setTextureName(
                     "MoreTools:LonsdaleiteChestplate");
     public static Item LonsdaleiteLeggings = new LonsdaleiteArmor(
-            armorLonsdaleite, Configs.LonsdaleiteLeggingsID, 2)
+            armorLonsdaleite, ConfigurationHandler.LonsdaleiteLeggingsID, 2)
             .setUnlocalizedName("LonsdaleiteLeggings").setTextureName(
                     "MoreTools:LonsdaleiteLeggings");
     public static Item LonsdaleiteBoots = new LonsdaleiteArmor(
-            armorLonsdaleite, Configs.LonsdaleiteBootsID, 3).setUnlocalizedName(
+            armorLonsdaleite, ConfigurationHandler.LonsdaleiteBootsID, 3).setUnlocalizedName(
             "LonsdaleiteBoots").setTextureName("MoreTools:LonsdaleiteBoots");
     public static Item BedrockHelmet = new BedrockArmor(armorBedrock,
-            Configs.BedrockHelmetID, 0).setUnlocalizedName("BedrockHelmet")
+            ConfigurationHandler.BedrockHelmetID, 0).setUnlocalizedName("BedrockHelmet")
             .setTextureName("MoreTools:BedrockHelmet");
     public static Item BedrockChestplate = new BedrockArmor(armorBedrock,
-            Configs.BedrockChestplateID, 1).setUnlocalizedName(
+            ConfigurationHandler.BedrockChestplateID, 1).setUnlocalizedName(
             "BedrockChestplate").setTextureName("MoreTools:BedrockChestplate");
     public static Item BedrockLeggings = new BedrockArmor(armorBedrock,
-            Configs.BedrockLeggingsID, 2).setUnlocalizedName("BedrockLeggings")
+            ConfigurationHandler.BedrockLeggingsID, 2).setUnlocalizedName("BedrockLeggings")
             .setTextureName("MoreTools:BedrockLeggings");
     public static Item BedrockBoots = new BedrockArmor(armorBedrock,
-            Configs.BedrockBootsID, 3).setUnlocalizedName("BedrockBoots")
+            ConfigurationHandler.BedrockBootsID, 3).setUnlocalizedName("BedrockBoots")
             .setTextureName("MoreTools:BedrockBoots");
     public static Item QuartzHelmet = new QuartzArmor(armorQuartz,
-            Configs.QuartzHelmetID, 0).setUnlocalizedName("QuartzHelmet")
+            ConfigurationHandler.QuartzHelmetID, 0).setUnlocalizedName("QuartzHelmet")
             .setTextureName("MoreTools:QuartzHelmet");
     public static Item QuartzChestplate = new QuartzArmor(armorQuartz,
-            Configs.QuartzChestplateID, 1)
+            ConfigurationHandler.QuartzChestplateID, 1)
             .setUnlocalizedName("QuartzChestplate").setTextureName(
                     "MoreTools:QuartzChestplate");
     public static Item QuartzLeggings = new QuartzArmor(armorQuartz,
-            Configs.QuartzLeggingsID, 2).setUnlocalizedName("QuartzLeggings")
+            ConfigurationHandler.QuartzLeggingsID, 2).setUnlocalizedName("QuartzLeggings")
             .setTextureName("MoreTools:QuartzLeggings");
     public static Item QuartzBoots = new QuartzArmor(armorQuartz,
-            Configs.QuartzBootsID, 3).setUnlocalizedName("QuartzBoots")
+            ConfigurationHandler.QuartzBootsID, 3).setUnlocalizedName("QuartzBoots")
             .setTextureName("MoreTools:QuartzBoots");
-    public static Block DiamondFurnace = new DiamondFurnace(Configs.DiamondFurnaceID, Material.iron).setBlockName("DiamondFurnace").setBlockTextureName("MoreTools:DiamondFurnace");
+    public static Block DiamondFurnace = new DiamondFurnace(ConfigurationHandler.DiamondFurnaceID, Material.iron).setBlockName("DiamondFurnace").setBlockTextureName("MoreTools:DiamondFurnace");
+    public static Block SmallLonsdaleiteMetorite = new TileEntitySmallLonsdaleiteMetorite(ConfigurationHandler.SmallLonsdaleiteMetoriteID, Material.anvil).setBlockName("SmallLonsdaleiteMetorite").setBlockTextureName("MoreTools:SmallLonsdaleiteMetorite");
 
     public MoreTools() {
 
@@ -455,13 +462,13 @@ public class MoreTools<FMLInitialization> {
         GameRegistry.registerItem(TabArmorPlaceHolder, "TabArmorPlaceHolder");
 
         // Bedrock Override
-        if (Configs.overrideBedrock = true) {
+        if (!ConfigurationHandler.overrideBedrock) {
             Blocks.bedrock.setHardness(50.0F);
             Blocks.bedrock.setHarvestLevel("pickaxe", 10);
         }
 
         // Dirt
-        if (Configs.enableDirt = true) {
+        if (!ConfigurationHandler.enableDirt) {
             GameRegistry.registerItem(DirtPickaxe, "DirtPickaxe");
             GameRegistry.registerItem(DirtSword, "DirtSword");
             GameRegistry.registerItem(DirtShovel, "DirtShovel");
@@ -474,7 +481,7 @@ public class MoreTools<FMLInitialization> {
         }
 
         // Emerald
-        if (Configs.enableEmerald = true) {
+        if (!ConfigurationHandler.enableEmerald) {
             GameRegistry.registerItem(EmeraldPickaxe, "EmeraldPickaxe");
             GameRegistry.registerItem(EmeraldSword, "EmeraldSword");
             GameRegistry.registerItem(EmeraldShovel, "EmeraldShovel");
@@ -487,7 +494,7 @@ public class MoreTools<FMLInitialization> {
         }
 
         // Redstone
-        if (Configs.enableRedstone = true) {
+        if (!ConfigurationHandler.enableRedstone) {
             GameRegistry.registerItem(RedstonePickaxe, "RedstonePickaxe");
             GameRegistry.registerItem(RedstoneSword, "RedstoneSword");
             GameRegistry.registerItem(RedstoneShovel, "RedstoneShovel");
@@ -500,7 +507,7 @@ public class MoreTools<FMLInitialization> {
         }
 
         // Glass
-        if (Configs.enableGlass = true) {
+        if (!ConfigurationHandler.enableGlass) {
             GameRegistry.registerItem(GlassPickaxe, "GlassPickaxe");
             GameRegistry.registerItem(GlassSword, "GlassSword");
             GameRegistry.registerItem(GlassShovel, "GlassShovel");
@@ -516,7 +523,7 @@ public class MoreTools<FMLInitialization> {
         }
 
         // Lapis
-        if (Configs.enableLapis = true) {
+        if (!ConfigurationHandler.enableLapis) {
             GameRegistry.registerItem(LapisPickaxe, "LapisPickaxe");
             GameRegistry.registerItem(LapisSword, "LapisSword");
             GameRegistry.registerItem(LapisShovel, "LapisShovel");
@@ -529,7 +536,7 @@ public class MoreTools<FMLInitialization> {
         }
 
         // Obsidian
-        if (Configs.enableObsidian = true) {
+        if (!ConfigurationHandler.enableObsidian) {
             GameRegistry.registerItem(ObsidianPickaxe, "ObsidianPickaxe");
             GameRegistry.registerItem(ObsidianSword, "ObsidianSword");
             GameRegistry.registerItem(ObsidianShovel, "ObsidianShovel");
@@ -542,7 +549,7 @@ public class MoreTools<FMLInitialization> {
         }
 
         // Coal
-        if (Configs.enableCoal = true) {
+        if (!ConfigurationHandler.enableCoal) {
             GameRegistry.registerItem(CoalPickaxe, "CoalPickaxe");
             GameRegistry.registerItem(CoalSword, "CoalSword");
             GameRegistry.registerItem(CoalShovel, "CoalShovel");
@@ -555,7 +562,7 @@ public class MoreTools<FMLInitialization> {
         }
 
         // Wool
-        if (Configs.enableWool = true) {
+        if (!ConfigurationHandler.enableWool) {
             GameRegistry.registerItem(WoolPickaxe, "WoolPickaxe");
             GameRegistry.registerItem(WoolSword, "WoolSword");
             GameRegistry.registerItem(WoolShovel, "WoolShovel");
@@ -569,7 +576,7 @@ public class MoreTools<FMLInitialization> {
         }
 
         // Lonsdaleite
-        if (Configs.enableLonsdaleite = true) {
+        if (!ConfigurationHandler.enableLonsdaleite) {
             GameRegistry.registerItem(LonsdaleitePickaxe, "LonsdaleitePickaxe");
             GameRegistry.registerItem(LonsdaleiteSword, "LonsdaleiteSword");
             GameRegistry.registerItem(LonsdaleiteShovel, "LonsdaleiteShovel");
@@ -586,10 +593,11 @@ public class MoreTools<FMLInitialization> {
             GameRegistry.registerBlock(LonsdaleiteBlock, "LonsdaleiteBlock");
             GameRegistry.registerBlock(DiamondFurnace, "DiamondFurnace");
             GameRegistry.registerTileEntity(DiamondFurnaceTileEntity.class, "DiamondFurnaceTileEntity");
+            GameRegistry.registerBlock(SmallLonsdaleiteMetorite, "SmallLonsdaleiteMetorite");
         }
 
         // Bedrock
-        if (Configs.enableBedrock = true) {
+        if (!ConfigurationHandler.enableBedrock) {
             GameRegistry.registerItem(BedrockPickaxe, "BedrockPickaxe");
             GameRegistry.registerItem(BedrockSword, "BedrockSword");
             GameRegistry.registerItem(BedrockShovel, "BedrockShovel");
@@ -601,14 +609,14 @@ public class MoreTools<FMLInitialization> {
             GameRegistry.registerItem(BedrockBoots, "BedrockBoots");
             GameRegistry.registerItem(DiamondStick, "DiamondStick");
         }
-        if (Configs.enableFakeBedrock = true) {
+        if (!ConfigurationHandler.enableFakeBedrock) {
             GameRegistry.registerBlock(ArtificialBedrock, "ArtificialBedrock");
             GameRegistry.registerItem(BedrockLump, "BedrockLump");
             GameRegistry.registerItem(ObsidianLump, "ObsidianLump");
         }
 
         // Quartz
-        if (Configs.enableQuartz = true) {
+        if (!ConfigurationHandler.enableQuartz) {
             GameRegistry.registerItem(QuartzPickaxe, "QuartzPickaxe");
             GameRegistry.registerItem(QuartzSword, "QuartzSword");
             GameRegistry.registerItem(QuartzShovel, "QuartzShovel");
@@ -621,10 +629,10 @@ public class MoreTools<FMLInitialization> {
         }
 
         // Misc
-        if (Configs.enableLonsdaleite = true) {
+        if (!ConfigurationHandler.enableLonsdaleite) {
             GameRegistry.registerWorldGenerator(LonsdaleiteWG, 1);
         }
-        if (Configs.enableFakeBedrock = true) {
+        if (!ConfigurationHandler.enableFakeBedrock) {
             GameRegistry.registerWorldGenerator(BedrockWG, 1);
         }
 
@@ -653,34 +661,29 @@ public class MoreTools<FMLInitialization> {
                         LonsdaleiteBlock});
     }
 
-    @EventHandler
-    public static void init(FMLInitializationEvent event) {
-        new DiamondFurnaceGuiHandler();
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new DiamondFurnaceGuiHandler());
-    }
-
     public static void addNames() {
     }
 
-    public static void oreRegistration() {
-        OreDictionary.registerOre("stickWood", Items.stick);
-        OreDictionary.registerOre("blockDirt", Blocks.dirt);
-        OreDictionary.registerOre("gemEmerald", Items.emerald);
-        OreDictionary.registerOre("blockHardenedGlass", HardenedGlass);
-        OreDictionary.registerOre("blockLapis", Blocks.lapis_block);
-        OreDictionary.registerOre("blockObsidian", Blocks.obsidian);
-        OreDictionary.registerOre("blockCoal", Blocks.coal_block);
-        OreDictionary.registerOre("blockRockWool", RockWool);
-        OreDictionary.registerOre("gemLonsdaleite", LonsdaleiteGem);
-        OreDictionary.registerOre("blockBedrock", Blocks.bedrock);
-        OreDictionary.registerOre("blockBedrock", ArtificialBedrock);
-        OreDictionary.registerOre("blockQuartz", Blocks.quartz_block);
-        OreDictionary.registerOre("blockRedstone", Blocks.redstone_block);
-        OreDictionary.registerOre("stickDiamond", DiamondStick);
-        OreDictionary.registerOre("blockWool", Blocks.wool);
-        OreDictionary.registerOre("blockStone", Blocks.stone);
-    }
-
+    /*
+        public static void oreRegistration() {
+            OreDictionary.registerOre("stickWood", Items.stick);
+            OreDictionary.registerOre("blockDirt", Blocks.dirt);
+            OreDictionary.registerOre("gemEmerald", Items.emerald);
+            OreDictionary.registerOre("blockHardenedGlass", HardenedGlass);
+            OreDictionary.registerOre("blockLapis", Blocks.lapis_block);
+            OreDictionary.registerOre("blockObsidian", Blocks.obsidian);
+            OreDictionary.registerOre("blockCoal", Blocks.coal_block);
+            OreDictionary.registerOre("blockRockWool", RockWool);
+            OreDictionary.registerOre("gemLonsdaleite", LonsdaleiteGem);
+            OreDictionary.registerOre("blockBedrock", Blocks.bedrock);
+            OreDictionary.registerOre("blockBedrock", ArtificialBedrock);
+            OreDictionary.registerOre("blockQuartz", Blocks.quartz_block);
+            OreDictionary.registerOre("blockRedstone", Blocks.redstone_block);
+            OreDictionary.registerOre("stickDiamond", DiamondStick);
+            OreDictionary.registerOre("blockWool", Blocks.wool);
+            OreDictionary.registerOre("blockStone", Blocks.stone);
+        }
+    */
     public static void addOreRecipes() {
         // Dirt
         GameRegistry.addRecipe(new ShapedOreRecipe(DirtPickaxe, true,
@@ -1139,16 +1142,25 @@ public class MoreTools<FMLInitialization> {
     }
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        Configs.Init(event.getSuggestedConfigurationFile());
+    public void init(FMLInitializationEvent event) {
+        new DiamondFurnaceGuiHandler();
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new DiamondFurnaceGuiHandler());
+        proxy.registerRenderThings();
+        GameRegistry.registerTileEntity(EntitySmallLonsdaleiteMetorite.class, "EntitySmallLonsdaleiteMetorite");
+        instance = this;
+        addNames();
+        //oreRegistration();
+        addOreRecipes();
     }
 
     @Mod.EventHandler
-    public void load(FMLInitializationEvent event) {
-        proxy.registerRenderThings();
-        instance = this;
-        addNames();
-        oreRegistration();
-        addOreRecipes();
+    public void preInit(FMLPreInitializationEvent event) {
+        ConfigurationHandler.init(event.getSuggestedConfigurationFile());
+        FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
+    }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+
     }
 }

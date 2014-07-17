@@ -1,6 +1,6 @@
 package com.swedishmonkey.moretools.block.worldgen;
 
-import com.swedishmonkey.moretools.common.Configs;
+import com.swedishmonkey.moretools.common.ConfigurationHandler;
 import com.swedishmonkey.moretools.common.MoreTools;
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.world.World;
@@ -9,7 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import java.util.Random;
 
-public class LonsdaleiteOreWG implements IWorldGenerator {
+public class SmallLonsdaleiteMetoriteWG implements IWorldGenerator {
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world,
                          IChunkProvider arg4, IChunkProvider arg5) {
@@ -25,10 +25,10 @@ public class LonsdaleiteOreWG implements IWorldGenerator {
 
         for (int i = 0; i < 10; i++) {
             int Xcoords = x + random.nextInt(16);
-            int Ycoords = random.nextInt(10);
+            int Ycoords = random.nextInt(128);
             int Zcoords = z + random.nextInt(16);
-            if (Configs.enableLonsdaleite) {
-                new WorldGenMinable(MoreTools.LonsdaleiteOre, 4).generate(world, random, Xcoords, Ycoords, Zcoords);
+            if (ConfigurationHandler.enableLonsdaleite) {
+                new WorldGenMinable(MoreTools.SmallLonsdaleiteMetorite, 1).generate(world, random, Xcoords, Ycoords, Zcoords);
             }
         }
     }

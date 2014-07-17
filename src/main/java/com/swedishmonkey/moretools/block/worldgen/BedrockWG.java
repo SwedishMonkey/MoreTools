@@ -1,6 +1,6 @@
 package com.swedishmonkey.moretools.block.worldgen;
 
-import com.swedishmonkey.moretools.common.Configs;
+import com.swedishmonkey.moretools.common.ConfigurationHandler;
 import com.swedishmonkey.moretools.common.MoreTools;
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.world.World;
@@ -27,7 +27,7 @@ public class BedrockWG implements IWorldGenerator {
             int Xcoords = x + random.nextInt(16);
             int Ycoords = random.nextInt(4);
             int Zcoords = z + random.nextInt(16);
-            if (Configs.enableBedrock) {
+            if (ConfigurationHandler.enableBedrock) {
                 new WorldGenMinable(MoreTools.ArtificialBedrock, 10).generate(world, random, Xcoords, Ycoords, Zcoords);
             }
         }
